@@ -21,17 +21,17 @@ import { LayoutModule } from './layout/layout.module';
 
 const appRoutes: Routes = [
     {
-        path      : 'sample',
+        path      : 'form',
         loadChildren :'./main/sample/project.module#ProjectDashboardModule'
     },
    
     {
-        path      : 'resizing',
+        path      : 'dashboard',
         loadChildren :'./main/resizing/resizing.module#ResizingModule'
     },
     {
         path:'',
-        redirectTo:'/resizing',
+        redirectTo:'/dashboard',
         pathMatch:'full'
     }
 
