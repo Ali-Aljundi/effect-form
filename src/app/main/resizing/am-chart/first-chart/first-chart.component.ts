@@ -35,11 +35,11 @@ export class FirstChartComponent{
 
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
       dateAxis.renderer.grid.template.location = 0;
-
+      dateAxis.fontSize=15;
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
       valueAxis.tooltip.disabled = true;
       valueAxis.renderer.minWidth = 35;
-
+      valueAxis.fontSize=15;
       const series = chart.series.push(new am4charts.LineSeries());
       series.dataFields.dateX = 'date';
       series.dataFields.valueY = 'value';

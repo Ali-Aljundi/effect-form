@@ -3,15 +3,25 @@
 
     <div class="fuse-widget-front h-auto" >
         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-            <div class="h3">first
+            <div class="h3">{{title}}
             </div>
             <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="more">
                 <mat-icon>more_vert</mat-icon>
             </button>
         </div>
 
-        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-            <h1> front</h1>
+        <div class="pt-8 pb-16" fxLayout="column" fxLayoutAlign="center center">
+            <div class="{{color}}-fg font-size-66 line-height-56">
+                {{allCount}}
+            </div>
+            <div class="{{color}}-fg font-size-20 secondary-text font-weight-500">$
+            </div>
+        </div>
+        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="center center">
+            <span class="h4 secondary-text text-truncate">
+                Localy:
+            </span>
+            <span class="h4 ml-8">{{count}}</span>
         </div>
     </div>
     <!-- / Front -->
@@ -22,7 +32,7 @@
             <mat-icon class="s-16">close</mat-icon>
         </button>
         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-            <h1> back</h1>
+            <h1> {{back}}</h1>
         </div>
     </div>
     <!-- / Back -->  

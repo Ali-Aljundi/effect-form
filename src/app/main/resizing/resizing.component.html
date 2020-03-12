@@ -1,26 +1,24 @@
 
     <div class="control-section" >
-        <ejs-dashboardlayout id='defaultLayout' #defaultLayout [columns]='columns' [allowResizing]='true' [cellSpacing]='cellSpacing'  >
+        <ejs-dashboardlayout id='defaultLayout' #defaultLayout [columns]='columns' [allowResizing]='true' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines'  >
             <e-panels>
-                <e-panel [sizeX]="0" [sizeY]="0" [row]="0" [col]="0">
-                    <ng-template #header>
-                    </ng-template>
+                <e-panel [sizeX]="1" [sizeY]="1" [row]="0" [col]="0">
                 <ng-template #content>
-                    <app-widget></app-widget>
+                    <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
                 </ng-template>
                 </e-panel>
-                <e-panel [sizeX]="2" [sizeY]="1" [row]="1" [col]="0">
+                <e-panel [sizeX]="1" [sizeY]="1" [row]="0" [col]="1">
 
                     <ng-template #content>
-                        <app-widget></app-widget>
+                        <app-widget [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
                     </ng-template>
                 </e-panel>
-                <e-panel id="tag-cloud-chart" [sizeX]="2" [sizeY]="2" [row]="0" [col]="1">
+                <e-panel id="tag-cloud-chart" [sizeX]="2" [sizeY]="1" [row]="1" [col]="0">
                     <ng-template #content>
                         <tag-cloud-chart ></tag-cloud-chart>
                     </ng-template>
                 </e-panel>
-                <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="2" [row]="0" [col]="1">
+                <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="2" [row]="0" [col]="3">
                     <ng-template #content>
                         <app-first-chart ></app-first-chart>
                     </ng-template>
