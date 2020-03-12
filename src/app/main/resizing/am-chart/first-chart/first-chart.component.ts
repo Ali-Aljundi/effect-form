@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
@@ -10,16 +10,16 @@ am4core.useTheme(am4themes_animated);
   templateUrl: './first-chart.component.html',
   styleUrls: ['./first-chart.component.scss']
 })
-export class FirstChartComponent implements OnInit {
+export class FirstChartComponent{
 
-  private chart: am4charts.XYChart;
+
 
   constructor(private zone: NgZone) {}
 
  
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      
+      am4core.ready(function() {
       const chart = am4core.create('chartdiv', am4charts.XYChart);
 
       chart.paddingRight = 20;
@@ -51,25 +51,8 @@ export class FirstChartComponent implements OnInit {
       scrollbarX.series.push(series);
       chart.scrollbarX = scrollbarX;
 
-      this.chart = chart;
     });
+  });
   }
 
-
-  ngOnDestroy() {
-    this.zone.runOutsideAngular(() => {
-      if (this.chart) {
-        this.chart.dispose();
-      }
-    });
-  }
-
-  // tslint:disable-next-line:typedef
-  ngOnInit() {
-  }
-
-
-  public get(): string{
-  return '<div id="chartdiv" style="width: 100%; height: 500px"></div>';
-  }
 }

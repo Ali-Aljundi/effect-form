@@ -370,6 +370,5 @@ export class TagCloudComponent{
       hoverState.properties.fill = am4core.color("#FF0000");
     
     });
- 
-  }
+}
 }
