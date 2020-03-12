@@ -1,0 +1,30 @@
+
+    <div class="control-section" >
+        <ejs-dashboardlayout id='defaultLayout' #defaultLayout [columns]='columns' [allowResizing]='true' [cellSpacing]='cellSpacing'  >
+            <e-panels>
+                <e-panel [sizeX]="0" [sizeY]="0" [row]="0" [col]="0">
+                    <ng-template #header>
+                    </ng-template>
+                <ng-template #content>
+                    <app-widget></app-widget>
+                </ng-template>
+                </e-panel>
+                <e-panel [sizeX]="2" [sizeY]="1" [row]="1" [col]="0">
+
+                    <ng-template #content>
+                        <app-widget></app-widget>
+                    </ng-template>
+                </e-panel>
+                <e-panel id="tag-cloud-chart" [sizeX]="2" [sizeY]="2" [row]="0" [col]="1">
+                    <ng-template #content>
+                        <tag-cloud-chart ></tag-cloud-chart>
+                    </ng-template>
+                </e-panel>
+                <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="2" [row]="0" [col]="1">
+                    <ng-template #content>
+                        <app-first-chart ></app-first-chart>
+                    </ng-template>
+                </e-panel>
+            </e-panels>
+        </ejs-dashboardlayout>
+    </div>
