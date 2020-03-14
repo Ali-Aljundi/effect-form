@@ -31,6 +31,10 @@ const appRoutes: Routes = [
         loadChildren :'./main/resizing/resizing.module#ResizingModule'
     },
     {
+        path      : 'Accordion',
+        loadChildren :'./main/accordion/accordion.module#accordionModule'
+    },
+    {
         path:'login',
         component:LoginComponent,
     },
@@ -58,7 +62,6 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         LoginModule,
         TranslateModule.forRoot(),
-
         // Material moment date module
         MatMomentDateModule,
 
