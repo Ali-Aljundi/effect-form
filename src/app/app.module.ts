@@ -17,7 +17,8 @@ import { fuseConfig } from './fuse-config';
 import { FakeDbService } from './fake-db/fake-db.service';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
-
+import {LoginComponent} from './login/login.component';
+import {LoginModule} from './login/login.module';
 
 const appRoutes: Routes = [
     {
@@ -30,23 +31,32 @@ const appRoutes: Routes = [
         loadChildren :'./main/resizing/resizing.module#ResizingModule'
     },
     {
+        path:'login',
+        component:LoginComponent,
+    },
+    {
         path:'',
-        redirectTo:'/dashboard',
+        redirectTo:'/login',
         pathMatch:'full'
+    },
+    {
+        path:'**',
+        redirectTo:'/login'
     }
+
 
 ];
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports     : [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
-
+        LoginModule,
         TranslateModule.forRoot(),
 
         // Material moment date module
