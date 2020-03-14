@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -39,7 +40,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private _router: Router
     )
     {
         // Set the defaults
@@ -159,5 +161,10 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Use the selected language for translations
         this._translateService.use(lang.id);
+    }
+    logout()
+    {
+        this._router.navigate(['/login']);
+        console.log("logout")
     }
 }

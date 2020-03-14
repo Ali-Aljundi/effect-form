@@ -1,8 +1,15 @@
 .control-section {
     margin:10px;
     width: 100%;
+<<<<<<< HEAD
     position: initial;
     
+=======
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    overflow:auto;
+>>>>>>> ec6d48a872f0600821f9a8c7ed727bdab40ae3de
 }
 
 #defaultLayout {

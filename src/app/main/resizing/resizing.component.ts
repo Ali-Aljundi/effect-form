@@ -1,6 +1,6 @@
 import { Component,ViewEncapsulation,ViewChild, ElementRef  } from '@angular/core';
 //import a from './widget/widget.component.html';
-
+import { createElement } from '@syncfusion/ej2-base';
 
 @Component({
   selector: 'app-resizing',
@@ -10,6 +10,7 @@ import { Component,ViewEncapsulation,ViewChild, ElementRef  } from '@angular/cor
 })
 export class ResizingComponent
     {
+      public badgeContent: string[] = ['7 New', '27 New', '2 New', '14 New'];
         public cellSpacing: number[] = [5, 5];
         public columns: number = 5;
         public allowResizing: boolean = true;
@@ -22,6 +23,6 @@ export class ResizingComponent
         public back:string[]=[
           "this is the global earning",
         "this is the global debt"];
-        public color:string[]=["green","red"];
+        public color:string[]=["green","red"]; 
 
     }
