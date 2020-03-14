@@ -1,25 +1,25 @@
 
  <div class="control-section" >
-         <ejs-dashboardlayout id='first' #editLayout  [columns]='6' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
+         <ejs-dashboardlayout id='first' #editLayout  [columns]='5' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
             <e-panels>
 
-            <e-panel id="f-1" [sizeX]="2" [sizeY]="2"  [row]="0" [col]="0">
+            <e-panel id="f-1" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
                 <ng-template  #content>
                      <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
              </ng-template>  
             </e-panel>
-                <e-panel id="f-2" [sizeX]="2" [sizeY]="2" [row]="2" [col]="0">
+                <e-panel id="f-2" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
                     <ng-template #content >
                         <app-widget  [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
                     </ng-template>
                 </e-panel>
            
-                <e-panel id="tag-cloud-chart" [sizeX]="4" [sizeY]="2" [row]="0" [col]="2">
+                <e-panel id="tag-cloud-chart" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
                     <ng-template #content>
                         <tag-cloud-chart></tag-cloud-chart>
                     </ng-template>
                 </e-panel>
-                <e-panel id="app-first-chart" [sizeX]="4" [sizeY]="3" [row]="3" [col]="2">
+                <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="2" [row]="2" [col]="1">
                     <ng-template #content>
                         <app-first-chart ></app-first-chart>
                     </ng-template>
@@ -27,7 +27,7 @@
             </e-panels>
         </ejs-dashboardlayout>
         </div>
-  
+  <!--
         <div class="control-section" >
        <ejs-dashboardlayout id='second'  [columns]='5' [allowResizing]='true' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines'>
             <e-panels>
@@ -54,5 +54,5 @@
             </e-panels>
         </ejs-dashboardlayout> 
  
-    </div> 
+    </div> -->
 

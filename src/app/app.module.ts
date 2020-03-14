@@ -30,19 +30,12 @@ const appRoutes: Routes = [
         path      : 'dashboard',
         loadChildren :'./main/resizing/resizing.module#ResizingModule'
     },
-    {
-        path:'login',
-        component:LoginComponent,
-    },
+
     {
         path:'',
-        redirectTo:'/login',
+        redirectTo:'/dashboard',
         pathMatch:'full'
     },
-    {
-        path:'**',
-        redirectTo:'/login'
-    }
 
 
 ];
