@@ -1,10 +1,12 @@
 :host {
 
-    .content {
-
+    .cont {
+        
         form {
+           margin-left: auto !important;
+           margin-right: auto !important;
             width: 100%;
-            max-width: 800px !important;
+            max-width: 600px !important;
         }
 
         .form-errors-model {
@@ -20,4 +22,10 @@
             max-width: 800px;
         }
     }
+}
+.head{
+    text-align: center;
+}
+.colo{
+    background-color:rgb(30, 29, 37) ;
 }
