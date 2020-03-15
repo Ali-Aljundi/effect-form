@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, Input } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
@@ -11,7 +11,7 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./tag-cloud.component.scss']
 })
 export class TagCloudComponent{
-
+    @Input() id:any;
   constructor(private zone: NgZone) {}
 
 
@@ -19,7 +19,7 @@ export class TagCloudComponent{
 
     this.zone.runOutsideAngular(() => {
        
-      const chart1 = am4core.create('tagcloud',am4plugins_wordCloud.WordCloud);
+      const chart1 = am4core.create(this.id,am4plugins_wordCloud.WordCloud);
       chart1.fontFamily = "Courier New";
       let series = chart1.series.push(new am4plugins_wordCloud.WordCloudSeries());
       series.randomness = 0.1;

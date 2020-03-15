@@ -1,7 +1,7 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone,Input, OnInit } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
-import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import am4themes_animated from '@amcharts/amcharts4/themes/animated'; 
 
 am4core.useTheme(am4themes_animated);
 
@@ -11,17 +11,18 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./first-chart.component.scss']
 })
 export class FirstChartComponent{
-
-
+  
+  @Input() id:any;
 
   constructor(private zone: NgZone) {}
 
- 
   ngAfterViewInit() {
-    this.zone.runOutsideAngular(() => {
-      am4core.ready(function() {
-      const chart = am4core.create('chartdiv', am4charts.XYChart);
+    this.zone.runOutsideAngular(() =>
 
+    {  console.log(this.id);
+      
+      let chart = am4core.create(this.id, am4charts.XYChart);
+   
       chart.paddingRight = 20;
 
       const data = [];
@@ -30,7 +31,7 @@ export class FirstChartComponent{
         visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
         data.push({ date: new Date(2018, 0, i), name: 'name' + i, value: visits });
       }
-
+ //console.log(this.id)
       chart.data = data;
 
       const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
@@ -50,9 +51,9 @@ export class FirstChartComponent{
       const scrollbarX = new am4charts.XYChartScrollbar();
       scrollbarX.series.push(series);
       chart.scrollbarX = scrollbarX;
+    
 
     });
-  });
   }
 
 }

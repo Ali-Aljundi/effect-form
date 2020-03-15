@@ -13,7 +13,7 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class LoginComponent implements OnInit
 {
-    loginUserData = {};
+    loginUserData :any= {};
     loginForm: FormGroup;
 
     /**

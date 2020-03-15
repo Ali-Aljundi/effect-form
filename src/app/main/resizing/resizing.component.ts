@@ -24,5 +24,5 @@ export class ResizingComponent
           "this is the global earning",
         "this is the global debt"];
         public color:string[]=["green","red"]; 
-
+        public id:any[]=['chart1','chart2','chart3','chart4'];
     }
