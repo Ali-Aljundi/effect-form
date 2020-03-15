@@ -15,7 +15,7 @@ export class ResizingComponent
         public columns: number = 5;
         public allowResizing: boolean = true;
         public resizableHandles: string[] = ['e-south-east','e-east','e-west','e-north','e-south'];
-        public showGridLines : boolean=true;
+        public showGridLines : boolean=false;
 
         public titles:string[]=["Earning","Debt"];
         public allCount:any[]=["13B ","60M "];
