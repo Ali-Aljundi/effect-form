@@ -16,7 +16,6 @@ import { ProjectDashboardComponent } from 'app/main/sample/project.component';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
 
-
 const routes: Routes = [
     {
         path     : '**',

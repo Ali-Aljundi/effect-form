@@ -70,8 +70,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 
     // tslint:disable-next-line:typedef
     SendInfo(event: any): void  {
-       
-        DialogUtility.alert('test');
+        DialogUtility.alert('this.form.getRawValue() | json');
     }
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods

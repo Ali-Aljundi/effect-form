@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { DialogUtility } from '@syncfusion/ej2-popups';
+
 @Component({
     selector     : 'project-dashboard',
     templateUrl  : './project.component.html',
@@ -69,9 +69,8 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     }
 
     // tslint:disable-next-line:typedef
-    SendInfo(event: any): void  {
-       
-        DialogUtility.alert('test');
+    SendInfo() {
+        
     }
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
