@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild, ElementRef  } from '@angular/core';
 // import a from './widget/widget.component.html';
 import { createElement } from '@syncfusion/ej2-base';
-import { FbAccountsInfosService } from 'Services/fb-accounts-infos.service';
 
 @Component({
   selector: 'app-resizing',
@@ -11,9 +10,6 @@ import { FbAccountsInfosService } from 'Services/fb-accounts-infos.service';
 })
 export class ResizingComponent
     {
-      // tslint:disable-next-line:variable-name
-      _fb_accounts_infos = [];
-      constructor(private _FbAccountsInfosService: FbAccountsInfosService) { }
       public badgeContent: string[] = ['7 New', '27 New', '2 New', '14 New'];
         public cellSpacing: number[] = [5, 5];
         public columns = 5;
@@ -29,7 +25,5 @@ export class ResizingComponent
         'this is the global debt'];
         public color: string[] = ['green', 'red']; 
 
-        ngOnInit() {
-          this._FbAccountsInfosService.getAccount().subscribe(data => {this._fb_accounts_infos = data; } );
+        
     }
-  }

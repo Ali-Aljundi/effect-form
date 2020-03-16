@@ -15,9 +15,11 @@ export class WidgetComponent implements OnInit {
 @Input() back: string;
 @Input() color: string;
 
-  constructor() { }
+  constructor(private _FbAccountsInfosService: FbAccountsInfosService) { }
 // tslint:disable-next-line:variable-name
-public _fb_accounts_infos: Observable<fb_accounts_infos[]>;
+public _fb_accounts_infos = [];
 
-
+  ngOnInit() {
+    this._FbAccountsInfosService.getAccount().subscribe(data => {this._fb_accounts_infos = data; } );
+}
 }
