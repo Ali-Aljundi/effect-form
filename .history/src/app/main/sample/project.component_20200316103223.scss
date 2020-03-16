@@ -1,0 +1,29 @@
+:host {
+
+    .content {
+
+        form {
+            width: 50%;
+            max-width: 50% !important;
+            text-align: center;
+
+        }
+
+        .form-errors-model {
+            flex: 1;
+
+            code {
+                background: none !important;
+            }
+        }
+
+        .horizontal-stepper-wrapper,
+        .vertical-stepper-wrapper {
+            max-width: 800px;
+        }
+
+        mat-card-content{
+            font-size: 20px;
+        }
+    }
+}

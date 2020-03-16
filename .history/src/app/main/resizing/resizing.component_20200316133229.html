@@ -1,0 +1,145 @@
+
+ <!--div class="control-section" >
+         <ejs-dashboardlayout id='first' #editLayout  [columns]='5' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
+            <e-panels>
+
+            <e-panel id="f-1" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
+                <ng-template  #content>
+                     <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
+             </ng-template>  
+            </e-panel>
+                <e-panel id="f-2" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
+                    <ng-template #content >
+                        <app-widget  [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
+                    </ng-template>
+                </e-panel>
+           
+                <e-panel id="tag-cloud-chart" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                    <ng-template #content>
+                        <tag-cloud-chart></tag-cloud-chart>
+                    </ng-template>
+                </e-panel>
+                <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                    <ng-template #content>
+                        <app-first-chart ></app-first-chart>
+                    </ng-template>
+                </e-panel>
+            </e-panels>
+        </ejs-dashboardlayout>
+        </div-->
+
+        <ejs-accordion>
+            <e-accordionitems>
+              <e-accordionitem >
+                <ng-template #header>
+                  <div>Charts</div>
+                </ng-template>
+                <ng-template #content>
+                    <div class="control-section" >
+                        <ejs-dashboardlayout id='first' #editLayout  [columns]='5' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
+                           <e-panels>
+               
+                           <e-panel id="f-1" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
+                               <ng-template  #content >
+                                    <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
+                            </ng-template>  
+                           </e-panel>
+                               <e-panel id="f-2" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
+                                   <ng-template #content >
+                                       <app-widget  [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
+                                   </ng-template>
+                               </e-panel>
+                          
+                               <e-panel id="tag-cloud-chart" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                                   <ng-template #content>
+                                       <tag-cloud-chart id="tag-cloud-chart"></tag-cloud-chart>
+                                   </ng-template>
+                               </e-panel>
+                               <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                                   <ng-template #content>
+                                       <app-first-chart id="app-first-chart"></app-first-chart>
+                                   </ng-template>
+                               </e-panel>
+                           </e-panels>
+                       </ejs-dashboardlayout>
+                      </div>
+                </ng-template>
+              </e-accordionitem>
+              <e-accordionitem>
+                <ng-template #header>
+                  <div>Samples</div>
+                </ng-template>
+                <ng-template #content>
+                    <div class="control-section" >
+                        <ejs-dashboardlayout id='first2' #editLayout  [columns]='5' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
+                           <e-panels>
+               
+                           <e-panel id="f-12" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
+                               <ng-template  #content>
+                                    <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
+                            </ng-template>  
+                           </e-panel>
+                               <e-panel id="f-22" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
+                                   <ng-template #content >
+                                       <app-widget  [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
+                                   </ng-template>
+                               </e-panel>
+                          
+                               <e-panel id="tag-cloud-chart2" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                                   <ng-template #content>
+                                       <tag-cloud-chart id="tag-cloud-chart2"></tag-cloud-chart>
+                                   </ng-template>
+                               </e-panel>
+                               <e-panel id="app-first-chart2" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                                   <ng-template #content>
+                                       <app-first-chart id="app-first-chart2"></app-first-chart>
+                                   </ng-template>
+                               </e-panel>
+                           </e-panels>
+                       </ejs-dashboardlayout>
+                       </div>
+                </ng-template>
+              </e-accordionitem>
+              <e-accordionitem>
+                <ng-template #header>
+                  <div>Test</div>
+                </ng-template>
+                <ng-template #content>
+                    <div class="control-section" >
+                        <ejs-dashboardlayout id='first3' #editLayout  [columns]='5' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
+                           <e-panels>
+               
+                           <e-panel id="f-13" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
+                               <ng-template  #content>
+                                    <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
+                            </ng-template>  
+                           </e-panel>
+                               <e-panel id="f-23" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
+                                   <ng-template #content >
+                                       <app-widget  [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
+                                   </ng-template>
+                               </e-panel>
+                          
+                               <e-panel id="tag-cloud-chart3" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                                   <ng-template #content>
+                                       <tag-cloud-chart id="tag-cloud-chart3"></tag-cloud-chart>
+                                   </ng-template>
+                               </e-panel>
+                               <e-panel id="app-first-chart3" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                                   <ng-template #content>
+                                       <app-first-chart id="app-first-chart3"></app-first-chart>
+                                   </ng-template>
+                               </e-panel>
+                           </e-panels>
+                       </ejs-dashboardlayout>
+                       </div>
+                </ng-template>
+              </e-accordionitem>
+            </e-accordionitems>
+        </ejs-accordion>
+
+
+        <p>Acoount List!</p>
+        <ul *ngFor = "let account of _fb_accounts_infos">
+        <li>  {{account.fb_accounts_infos}} . {{account.fb_effect_types}} - {{account.fb_url_types}} -  {{account.fb_account_types}}</li>
+        </ul>
