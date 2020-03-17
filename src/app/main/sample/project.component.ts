@@ -1,9 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { DialogUtility } from '@syncfusion/ej2-popups';
 import { fb_accounts_infos } from 'Model/fb_accounts_infos';
 import { FbAccountsInfosService } from 'Services/fb-accounts-infos.service';
+import { PostDataService } from 'Services/post-data.service';
+import {post_info} from 'Model/post_info';
+import {post_response} from 'Model/post_response';
+import { ToastComponent } from '@syncfusion/ej2-angular-notifications';
 @Component({
     selector     : 'project-dashboard',
     templateUrl  : './project.component.html',
@@ -11,13 +15,17 @@ import { FbAccountsInfosService } from 'Services/fb-accounts-infos.service';
 })
 export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
+    @ViewChild('element') element;
+    public position = { X: 'Right' };
+    public message:string;
+
     form: FormGroup;
     _fb_accounts_infos: fb_accounts_infos [] = [] ;
-    ALL: number;
-    Active: number;
+    postResponse:post_response;
+
     // Private
     private _unsubscribeAll: Subject<any>;
-
+    postdata=new post_info(); 
     /**
      * Constructor
      *
@@ -25,13 +33,12 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
      */
     constructor(
         private _formBuilder: FormBuilder,
-        private _FbAccountsInfosService: FbAccountsInfosService
+        private _FbAccountsInfosService: FbAccountsInfosService,
+        private postDataService:PostDataService
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
-        this.ALL = 150;
-        this.Active = 10;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -45,6 +52,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     {
         // Reactive Form
         this.form = this._formBuilder.group({
+            AccountType:['',Validators.required],
             Count   : [
                 {
                     value   : '',
@@ -55,17 +63,25 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
             EffectType   : ['', Validators.required],
             URLs   : ['', Validators.required],
             URLType  : ['', Validators.required],
-            // tslint:disable-next-line:typedef
-            Content      : ['', Validators.required] 
+            Content      : [ {
+                value   : '',
+                disabled: false
+            }
+        ] 
         });
-
+        this.element.hide('All');
+        this.element.target = '#toast_pos_target';
+        this.element.animation.show.effect="ZoomIn";
+        this.element.animation.hide.effect="ZoomOut";
         this.getInfo();
-    }
+    } 
     getInfo(): void{
-        this._FbAccountsInfosService.getAccount().subscribe(data => {this._fb_accounts_infos = data; },
-          err => console.error(err));
-  
-        console.log(this._fb_accounts_infos);
+        this._FbAccountsInfosService.getAccount()
+            .subscribe(data => {this._fb_accounts_infos = data; },
+          err => console.error(err)
+          );
+          this.message="Refresh Widget Value";
+          this.toastShow();
       }
 
     /**
@@ -82,10 +98,26 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    SendInfo(event: any): void  {
-       
-        DialogUtility.alert('test');
+    SendInfo(){
+        let a;
+       this.postdata=this.form.value;
+
+        this.postDataService.postdata(this.postdata)
+        .subscribe(
+            data=>{
+                this.postResponse=data;
+                this.message=this.postResponse.message;
+                this.toastShow();
+            }
+        );  
     }
+
+      toastShow() {
+        setTimeout(
+      () => {
+          this.element.show();
+      }, 1000);
+  }
     
 }
 

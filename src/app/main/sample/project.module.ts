@@ -15,7 +15,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { ProjectDashboardComponent } from 'app/main/sample/project.component';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
-
+import { ToastModule } from '@syncfusion/ej2-angular-notifications';
 const routes: Routes = [
     {
         path     : '**',
@@ -30,10 +30,9 @@ const routes: Routes = [
     imports     : [
         RouterModule.forChild(routes),
         MatButtonModule,
-
+        ToastModule,
         MatFormFieldModule,
         MatIconModule,
-
         MatSelectModule,
 
         AngularResizedEventModule,

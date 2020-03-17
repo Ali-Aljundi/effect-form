@@ -1,3 +1,4 @@
+
 :host {
 
     .cont {
@@ -59,10 +60,6 @@
 .icons{
     width: 15%  !important;
 }
-#hidden{
-    display: none;
-}
-
 .fuse-widget-front{
     max-height: 200px !important;
     overflow: hidden;
@@ -70,4 +67,13 @@
 .first{
     max-height: 500px !important;
    margin-left: 20% !important;
+}
+.toastcolor{
+    background-color: red;
+}
+.ref-button{
+    width: 75%;
+    
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
