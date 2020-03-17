@@ -21,12 +21,12 @@
                                 </ng-template>
                             </e-panel>
                     
-                            <e-panel id="tag-cloud-chart" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                            <e-panel id="tag-cloud-chart1" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
                                 <ng-template #content>
                                     <tag-cloud-chart [id]='id[0]'  ></tag-cloud-chart>
                                 </ng-template>
                             </e-panel>
-                            <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                            <e-panel id="app-first-chart2" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
                                 <ng-template #content>
                                     <app-first-chart [id]='id[1]'></app-first-chart>
                                 </ng-template>
@@ -44,23 +44,23 @@
                 <div class="control-section" >
                     <ejs-dashboardlayout id='second' #editLayout  [columns]='5' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
                         <e-panels>
-                        <e-panel id="f-1" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
+                        <e-panel id="f-3" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
                             <ng-template  #content>
                                 <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
                         </ng-template>  
                         </e-panel>
-                            <e-panel id="f-2" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
+                            <e-panel id="f-4" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
                                 <ng-template #content >
                                     <app-widget  [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
                                 </ng-template>
                             </e-panel>
                     
-                            <e-panel id="tag-cloud-chart" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                            <e-panel id="tag-cloud-chart3" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
                                 <ng-template #content>
                                     <tag-cloud-chart [id]='id[2]' ></tag-cloud-chart>
                                 </ng-template>
                             </e-panel>
-                            <e-panel id="app-first-chart" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                            <e-panel id="app-first-chart4" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
                                 <ng-template #content>
                                     <app-first-chart [id]='id[3]' ></app-first-chart>
                                 </ng-template>

@@ -15,6 +15,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { ProjectDashboardComponent } from 'app/main/sample/project.component';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
+
 const routes: Routes = [
     {
         path     : '**',
@@ -28,7 +29,6 @@ const routes: Routes = [
     ],
     imports     : [
         RouterModule.forChild(routes),
-
         MatButtonModule,
 
         MatFormFieldModule,

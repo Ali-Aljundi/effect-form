@@ -21,7 +21,8 @@ login {
                 padding: 32px;
                 text-align: center;
                 background-color: white;
-                margin-left: 450px;
+                margin-left: auto !important;
+                margin-right: auto !important;
                 @include mat-elevation(16);
 
                 @include media-breakpoint('xs') {

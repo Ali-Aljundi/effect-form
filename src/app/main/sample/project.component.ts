@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { DialogUtility } from '@syncfusion/ej2-popups';
+import { fb_accounts_infos } from 'Model/fb_accounts_infos';
+import { FbAccountsInfosService } from 'Services/fb-accounts-infos.service';
 @Component({
     selector     : 'project-dashboard',
     templateUrl  : './project.component.html',
@@ -9,7 +12,9 @@ import { Subject } from 'rxjs';
 export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
     form: FormGroup;
-
+    _fb_accounts_infos: fb_accounts_infos [] = [] ;
+    ALL: number;
+    Active: number;
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -19,11 +24,14 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
      * @param {FormBuilder} _formBuilder
      */
     constructor(
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private _FbAccountsInfosService: FbAccountsInfosService
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+        this.ALL = 150;
+        this.Active = 10;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -37,22 +45,28 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     {
         // Reactive Form
         this.form = this._formBuilder.group({
-            company   : [
+            Count   : [
                 {
                     value   : '',
                     disabled: false
-                }, Validators.required
+                }, [Validators.required,
+                   Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-            firstName : ['', Validators.required],
-            lastName  : ['', Validators.required],
-            address   : ['', Validators.required],
-            address2  : ['', Validators.required],
-            city      : ['', Validators.required],
-            state     : ['', Validators.required],
-            postalCode: ['', [Validators.required, Validators.maxLength(5)]],
-            country   : ['', Validators.required]
+            EffectType   : ['', Validators.required],
+            URLs   : ['', Validators.required],
+            URLType  : ['', Validators.required],
+            // tslint:disable-next-line:typedef
+            Content      : ['', Validators.required] 
         });
+
+        this.getInfo();
     }
+    getInfo(): void{
+        this._FbAccountsInfosService.getAccount().subscribe(data => {this._fb_accounts_infos = data; },
+          err => console.error(err));
+  
+        console.log(this._fb_accounts_infos);
+      }
 
     /**
      * On destroy
@@ -68,6 +82,10 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
+    SendInfo(event: any): void  {
+       
+        DialogUtility.alert('test');
+    }
     
 }
 
