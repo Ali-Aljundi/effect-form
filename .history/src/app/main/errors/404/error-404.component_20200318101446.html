@@ -1,0 +1,38 @@
+<!--div id="error-404" fxLayout="column" fxLayoutAlign="center center">
+
+    <div class="content" fxLayout="column" fxLayoutAlign="center center">
+
+        <div class="error-code">404</div>
+
+        <div class="message">Sorry but we could not find the page you are looking for</div>
+
+        <div class="search" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="icon s-24">search</mat-icon>
+            <input placeholder="Search for something" fxFlex>
+        </div>
+
+        <a class="back-link" [routerLink]="'/dashboard'">Go back to dashboard</a>
+
+    </div>
+
+</div-->
+<div id="maintenance" fxLayout="column">
+
+    <div id="maintenance-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="maintenance-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+            <div class="content" fxLayout="column" fxLayoutAlign="center center">
+            <div class="logo">
+                <img src="assets/images/maintenance/icons8-rest-api-64.png" width="50%">
+            </div>
+
+            <div class="title">There is an error with server</div>
+
+            <div class="subtitle">
+                We're sorry for the inconvenience. <br> Please check back later.
+            </div>
+
+        </div>
+    </div>
+
+</div>

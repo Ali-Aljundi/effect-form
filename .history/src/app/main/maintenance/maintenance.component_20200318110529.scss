@@ -1,0 +1,35 @@
+@import "src/@fuse/scss/fuse";
+
+    #Maintenance {
+        width: 100%;
+
+        .content {
+            width: 90%;
+            max-width: 512px !important;
+        }
+            .logo {
+                width: 256px;
+                margin: 32px auto;
+                text-align: center;
+            }
+            .title {
+                font-size: 32px;
+                text-align: center;
+                line-height: 1;
+                margin-bottom: 16px;
+                font-weight: 600;
+            }
+
+            .subtitle {
+                font-size: 24px;
+                text-align: center;
+                margin: 16px 0;
+                max-width: 300px;
+                color: rgba(0, 0, 0, 0.54);
+                font-size: 15px;
+                text-align: center;
+            }
+        }
+    
+
+
