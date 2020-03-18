@@ -15,17 +15,20 @@ import { ToastComponent } from '@syncfusion/ej2-angular-notifications';
 })
 export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
-    @ViewChild('element') element;
+    @ViewChild('element',{static: true}) element;
+    form: FormGroup;
+    _fb_accounts_infos: fb_accounts_infos;
+    postResponse:post_response;
+    postdata=new post_info();
+    
+
+    // Public
     public position = { X: 'Right' };
     public message:string;
 
-    form: FormGroup;
-    _fb_accounts_infos: fb_accounts_infos [] = [] ;
-    postResponse:post_response;
-
     // Private
     private _unsubscribeAll: Subject<any>;
-    postdata=new post_info(); 
+
     /**
      * Constructor
      *
@@ -39,6 +42,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+       
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -75,7 +79,9 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         this.element.animation.hide.effect="ZoomOut";
         this.getInfo();
     } 
-    getInfo(): void{
+
+    getInfo(): void
+    {
         this._FbAccountsInfosService.getAccount()
             .subscribe(data => {this._fb_accounts_infos = data; },
           err => console.error(err)
@@ -98,8 +104,9 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    SendInfo(){
-        let a;
+    SendInfo()
+    {
+
        this.postdata=this.form.value;
 
         this.postDataService.postdata(this.postdata)
@@ -112,12 +119,13 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         );  
     }
 
-      toastShow() {
+    toastShow()
+    {
         setTimeout(
       () => {
           this.element.show();
       }, 1000);
-  }
+    }
     
 }
 
