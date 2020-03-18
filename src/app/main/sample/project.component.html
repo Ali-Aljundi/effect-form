@@ -1,6 +1,7 @@
 <div class="page-layout simple left-sidebar inner-sidebar colo" id= "toast_pos_target">
     <div class="cont" fxFlex="100" fxLayout="row wrap " >
         <div class="first">
+            <img  (click)="getInfo()" class="ref" src="assets/icons/refresh.png"/>
             <div fxLayout="column">
                 <fuse-widget  fxFlex="100">
                     <div class="fuse-widget-front h-auto" >
@@ -11,14 +12,14 @@
 
                             <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                                 <div class="red-fg font-size-60 line-height-44">
-                                    {{_fb_accounts_infos.fb_accounts_infos[1].active_count}}
+                                    {{account.fb_accounts_info[1].active_count}}
                                 </div>
                             </div>
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="center center">
                             <span class="h4 secondary-text text-truncate">
                                 All Acount:
                             </span>
-                            <span class="h4 ml-8">{{_fb_accounts_infos.fb_accounts_infos[1].total_count}}</span>
+                            <span class="h4 ml-8">{{account.fb_accounts_info[1].total_count}}</span>
                         </div>
                     </div>
                 </fuse-widget>
@@ -31,18 +32,18 @@
                             </div>
                             <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                                 <div class="green-fg font-size-60 line-height-44 ">
-                                {{_fb_accounts_infos.fb_accounts_infos[0].active_count}}
+                                {{account.fb_accounts_info[0].active_count}}
                                 </div>
                             </div>
                             <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="center center">
                                 <span class="h4 secondary-text text-truncate">
                                     All Acount:
                                 </span>
-                                <span class="h4 ml-8">{{_fb_accounts_infos.fb_accounts_infos[0].total_count}}</span>
+                                <span class="h4 ml-8">{{account.fb_accounts_info[0].total_count}}</span>
                             </div>
                         </div>
                 </fuse-widget>
-                <button class="ref-button" mat-raised-button color="accent"  (click)="getInfo()">refresh</button>
+
             </div>
         </div>
         
@@ -60,7 +61,7 @@
                             <mat-form-field appearance="outline" fxFlex="100" >
                                 <mat-label  class="h2">Account Type</mat-label>
                                 <mat-select formControlName="AccountType" required>
-                                    <mat-option *ngFor="let item of _fb_accounts_infos.fb_account_types" [value]="item">
+                                    <mat-option *ngFor="let item of account.fb_account_types" [value]="item">
                                         {{item}}
                                     </mat-option>
                                 </mat-select>
@@ -81,7 +82,7 @@
                             <mat-form-field appearance="outline" fxFlex="100">
                                 <mat-label  class="h2" >Effect Type</mat-label>
                                 <mat-select formControlName="EffectType" >
-                                    <mat-option *ngFor="let item of _fb_accounts_infos.fb_effect_types" [(value)]="item" >
+                                    <mat-option *ngFor="let item of account.fb_effect_types" [(value)]="item" >
                                         {{item}}
                                     </mat-option>
                                 </mat-select >
@@ -92,10 +93,8 @@
                                 <mat-form-field appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL</mat-label>
                                     <textarea matInput formControlName="URLs" required>
-                                     
                                     </textarea>
-                                
-                                    <mat-error>URL is required!</mat-error>
+                                    <mat-error>URL Error!</mat-error>
                                 </mat-form-field>
                             </div>
 
@@ -103,7 +102,7 @@
                                 <mat-form-field appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL Type</mat-label>
                                     <mat-select formControlName="URLType" required>
-                                        <mat-option *ngFor="let item of _fb_accounts_infos.fb_url_types" [value]="item">
+                                        <mat-option *ngFor="let item of account.fb_url_types" [value]="item">
                                             {{item}}
                                         </mat-option>
                                     </mat-select>
@@ -122,7 +121,7 @@
                                     <mat-error>Content is required!</mat-error>
                                 </mat-form-field>
                             </div>
-                            <button   [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo($event)" >Apply Effect</button>
+                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo($event)" >Apply Effect</button>
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-info" >
                                 <ng-template #title>
                                     <div>API Response</div>

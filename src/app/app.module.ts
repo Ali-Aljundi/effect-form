@@ -35,6 +35,14 @@ const appRoutes: Routes = [
         loadChildren :'./main/accordion/accordion.module#accordionModule'
     },
     {
+        path: 'maintenance',
+        loadChildren: './main/errors/404/error-404.module#Error404Module' 
+    },
+    {
+        path: 'errors',
+        loadChildren: './main/maintenance/maintenence.module#MaintenanceModule' 
+    },
+    {
         path:'login',
         component:LoginComponent,
     },
@@ -45,7 +53,7 @@ const appRoutes: Routes = [
     },
     {
         path:'**',
-        redirectTo:'/login'
+        redirectTo:'/errors'
     }
 
 

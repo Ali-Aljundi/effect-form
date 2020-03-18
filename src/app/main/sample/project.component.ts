@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { DialogUtility } from '@syncfusion/ej2-popups';
-import { fb_accounts_infos } from 'Model/fb_accounts_infos';
+import { Account,fb_accounts_infos } from 'Model/fb_accounts_infos';
 import { FbAccountsInfosService } from 'Services/fb-accounts-infos.service';
 import { PostDataService } from 'Services/post-data.service';
 import {post_info} from 'Model/post_info';
 import {post_response} from 'Model/post_response';
 import { ToastComponent } from '@syncfusion/ej2-angular-notifications';
+import { Router } from '@angular/router';
 @Component({
     selector     : 'project-dashboard',
     templateUrl  : './project.component.html',
@@ -17,7 +18,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
     @ViewChild('element',{static: true}) element;
     form: FormGroup;
-    _fb_accounts_infos: fb_accounts_infos;
+    account=new Account();
     postResponse:post_response;
     postdata=new post_info();
     
@@ -37,12 +38,14 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     constructor(
         private _formBuilder: FormBuilder,
         private _FbAccountsInfosService: FbAccountsInfosService,
-        private postDataService:PostDataService
+        private postDataService:PostDataService,
+        private router:Router
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
        
+        this.getInfo(); 
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -64,8 +67,8 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
+             URLs: ['', [Validators.required, Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')]],
             EffectType   : ['', Validators.required],
-            URLs   : ['', Validators.required],
             URLType  : ['', Validators.required],
             Content      : [ {
                 value   : '',
@@ -77,15 +80,23 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         this.element.target = '#toast_pos_target';
         this.element.animation.show.effect="ZoomIn";
         this.element.animation.hide.effect="ZoomOut";
-        this.getInfo();
     } 
 
-    getInfo(): void
+    getInfo()
     {
         this._FbAccountsInfosService.getAccount()
-            .subscribe(data => {this._fb_accounts_infos = data; },
-          err => console.error(err)
-          );
+            .subscribe(data =>{ this.account = 
+                {
+                    fb_accounts_info:(data as any ).fb_accounts_infos,
+                    fb_account_types:(data as any).fb_account_types,
+                    fb_effect_types:(data as any ).fb_effect_types,
+                    fb_url_types:(data as any ).fb_url_types,    
+                }
+                console.log(this.account)
+            },
+            err => { console.error(err); this.router.navigate(['/maintenance']) ; }
+                );
+                
           this.message="Refresh Widget Value";
           this.toastShow();
       }
@@ -115,7 +126,8 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                 this.postResponse=data;
                 this.message=this.postResponse.message;
                 this.toastShow();
-            }
+            },
+            err => { console.error(err); this.router.navigate(['/maintenance']) ; }
         );  
     }
 
