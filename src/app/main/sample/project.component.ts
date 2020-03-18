@@ -22,6 +22,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     postResponse:post_response;
     postdata=new post_info();
     
+    loading = false;
 
     // Public
     public position = { X: 'Right' };
@@ -92,15 +93,19 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                     fb_effect_types:(data as any ).fb_effect_types,
                     fb_url_types:(data as any ).fb_url_types,    
                 }
+             console.log(data)  ;  
             },
-            err => { console.error(err); this.router.navigate(['/maintenance']) ; }
+            err => { console.error(err); this.router.navigate(['/maintenance']) ;
+             }
                 );
             
       }
 refresh(){
     this.getInfo();
       this.message="Refresh Widget Value";
-      this.toastShow();}
+      this.toastShow();
+   
+}
     /**
      * On destroy
      */
@@ -136,8 +141,13 @@ refresh(){
         setTimeout(
       () => {
           this.element.show();
-      }, 1000);
+          this.loading=false
+      }, 500);
+     
     }
+    save(): void {
+        this.loading = true;
+      }
     
 }
 

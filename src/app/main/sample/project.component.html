@@ -1,9 +1,11 @@
 <div class="page-layout simple left-sidebar inner-sidebar colo" id= "toast_pos_target">
     <div class="cont" fxFlex="100" fxLayout="row wrap " >
         <div class="first">
-           
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <div fxLayout="column">
-                <button class="ref-button" mat-raised-button color="accent" (click)="refresh()"><img class="ref" src="assets/icons/refresh.png"/>Refresh</button>
+                <div class="ref-button">
+                    <button mat-raised-button color="accent" [class.spinner]="loading" [disabled]="loading" (click)="save()" (click)="refresh()" >Refresh</button>
+                  </div>
                 <fuse-widget  fxFlex="100">
                     <div class="fuse-widget-front h-auto" >
                             <div class="pl-8 pr-8 py-16 h-54 font-size-20 red-fg" fxLayout="row" fxLayoutAlign="center">
