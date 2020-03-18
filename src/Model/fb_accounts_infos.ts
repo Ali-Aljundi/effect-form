@@ -10,7 +10,18 @@ export class  fb_accounts_infos{
 }
 
 export class Account{
-    fb_accounts_info:fb_accounts_infos[]
+    fb_accounts_info:fb_accounts_infos[]= [
+        {
+            "type": "",
+            "total_count": 0,
+            "active_count": 0
+        },
+        {
+            "type": "",
+            "total_count": 0,
+            "active_count": 0
+        }
+    ];
     fb_account_types: any[]=["0"];
     fb_effect_types: any[]=["0"];
     fb_url_types: any[]=["0"];

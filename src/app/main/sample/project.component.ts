@@ -92,15 +92,15 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                     fb_effect_types:(data as any ).fb_effect_types,
                     fb_url_types:(data as any ).fb_url_types,    
                 }
-                console.log(this.account)
             },
             err => { console.error(err); this.router.navigate(['/maintenance']) ; }
                 );
-                
-          this.message="Refresh Widget Value";
-          this.toastShow();
+            
       }
-
+refresh(){
+    this.getInfo();
+      this.message="Refresh Widget Value";
+      this.toastShow();}
     /**
      * On destroy
      */

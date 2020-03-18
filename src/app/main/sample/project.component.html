@@ -1,8 +1,9 @@
 <div class="page-layout simple left-sidebar inner-sidebar colo" id= "toast_pos_target">
     <div class="cont" fxFlex="100" fxLayout="row wrap " >
         <div class="first">
-            <img  (click)="getInfo()" class="ref" src="assets/icons/refresh.png"/>
+           
             <div fxLayout="column">
+                <button class="ref-button" mat-raised-button color="accent" (click)="refresh()"><img class="ref" src="assets/icons/refresh.png"/>Refresh</button>
                 <fuse-widget  fxFlex="100">
                     <div class="fuse-widget-front h-auto" >
                             <div class="pl-8 pr-8 py-16 h-54 font-size-20 red-fg" fxLayout="row" fxLayoutAlign="center">
@@ -121,7 +122,7 @@
                                     <mat-error>Content is required!</mat-error>
                                 </mat-form-field>
                             </div>
-                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo($event)" >Apply Effect</button>
+                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo()" >Apply Effect</button>
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-info" >
                                 <ng-template #title>
                                     <div>API Response</div>
