@@ -31,10 +31,6 @@ const appRoutes: Routes = [
         loadChildren :'./main/resizing/resizing.module#ResizingModule'
     },
     {
-        path      : 'Accordion',
-        loadChildren :'./main/accordion/accordion.module#accordionModule'
-    },
-    {
         path: 'maintenance',
         loadChildren: './main/errors/404/error-404.module#Error404Module' 
     },

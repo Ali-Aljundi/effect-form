@@ -69,7 +69,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-             urls: [[''], [Validators.required]],
+             urls: [[''], [Validators.required,Validators.pattern('https?://.+')]],
              //Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
