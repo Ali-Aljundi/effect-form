@@ -9,6 +9,7 @@ import {post_info} from 'Model/post_info';
 import {post_response} from 'Model/post_response';
 import { ToastComponent } from '@syncfusion/ej2-angular-notifications';
 import { Router } from '@angular/router';
+import $ from "jquery";
 @Component({
     selector     : 'project-dashboard',
     templateUrl  : './project.component.html',
@@ -60,20 +61,21 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     {
         // Reactive Form
         this.form = this._formBuilder.group({
-            AccountType:['',Validators.required],
-            Count   : [
+            registerdAccountType:['',Validators.required],
+            count   : [
                 {
                     value   : '',
                     disabled: false
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-             URLs: ['', [Validators.required, Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')]],
-            EffectType   : ['', Validators.required],
-            URLType  : ['', Validators.required],
-            Content      : [ {
+             urls: [[''], [Validators.required]],
+             //Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')
+             effectType   : ['', Validators.required],
+             url_type  : ['', Validators.required],
+            content      : [ {
                 value   : '',
-                disabled: false
+                disabled:true
             }
         ] 
         });
@@ -92,8 +94,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                     fb_account_types:(data as any).fb_account_types,
                     fb_effect_types:(data as any ).fb_effect_types,
                     fb_url_types:(data as any ).fb_url_types,    
-                }
-             console.log(data)  ;  
+                } 
             },
             err => { console.error(err); this.router.navigate(['/maintenance']) ;
              }
@@ -122,15 +123,18 @@ refresh(){
 
     SendInfo()
     {
-
-       this.postdata=this.form.value;
-
+        var stringArray = (<HTMLInputElement>document.getElementById("urls")).value.split(',');
+        console.log(stringArray);
+        this.form.value.urls=stringArray;
+        this.postdata=this.form.value;
+        console.log(this.postdata);
         this.postDataService.postdata(this.postdata)
         .subscribe(
             data=>{
                 this.postResponse=data;
                 this.message=this.postResponse.message;
                 this.toastShow();
+                console.log(data)
             },
             err => { console.error(err); this.router.navigate(['/maintenance']) ; }
         );  
@@ -143,11 +147,23 @@ refresh(){
           this.element.show();
           this.loading=false
       }, 500);
-     
     }
+    
     save(): void {
         this.loading = true;
-      }
+    }
+
+    enableContent():void{ 
+        this.form.controls.content.enable();
+    }
+
+    testEffectType():void{
+          if (this.form.value.effectType == 'comment') {
+            this.form.controls.content.enable(); 
+          }else{
+            this.form.controls.content.disable(); 
+          }
+    }
     
 }
 

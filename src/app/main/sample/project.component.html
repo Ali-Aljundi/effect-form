@@ -63,7 +63,7 @@
                         <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                             <mat-form-field appearance="outline" fxFlex="100" >
                                 <mat-label  class="h2">Account Type</mat-label>
-                                <mat-select formControlName="AccountType" required>
+                                <mat-select formControlName="registerdAccountType" required>
                                     <mat-option *ngFor="let item of account.fb_account_types" [value]="item">
                                         {{item}}
                                     </mat-option>
@@ -76,7 +76,7 @@
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                                 <mat-form-field appearance="outline"  fxFlex="100" class="pr-4" >
                                 <mat-label class="h2" >Count</mat-label> 
-                                <input matInput formControlName="Count" >
+                                <input matInput formControlName="count" >
                                 <mat-icon matSuffix class="secondary-text">dialpad</mat-icon>
                                 <mat-error> Count is required!</mat-error>
                                 </mat-form-field>
@@ -84,7 +84,7 @@
 
                             <mat-form-field appearance="outline" fxFlex="100">
                                 <mat-label  class="h2" >Effect Type</mat-label>
-                                <mat-select formControlName="EffectType" >
+                                <mat-select formControlName="effectType" >
                                     <mat-option *ngFor="let item of account.fb_effect_types" [(value)]="item" >
                                         {{item}}
                                     </mat-option>
@@ -94,8 +94,8 @@
                             </mat-form-field>
                             <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
                                 <mat-form-field appearance="outline" fxFlex="100" >
-                                    <mat-label  class="h2">URL</mat-label>
-                                    <textarea matInput formControlName="URLs" required>
+                                    <mat-label    class="h2">URL</mat-label>
+                                    <textarea id="urls" matInput formControlName="urls" required>
                                     </textarea>
                                     <mat-error>URL Error!</mat-error>
                                 </mat-form-field>
@@ -104,7 +104,7 @@
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                                 <mat-form-field appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL Type</mat-label>
-                                    <mat-select formControlName="URLType" required>
+                                    <mat-select formControlName="url_type" required>
                                         <mat-option *ngFor="let item of account.fb_url_types" [value]="item">
                                             {{item}}
                                         </mat-option>
@@ -114,17 +114,18 @@
                                 </mat-form-field>
                             </div>
                             
-                            <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngIf="form.value.EffectType == 'comment'"   >
-                                <mat-form-field appearance="outline" fxFlex="100">
+                            <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngIf="form.value.effectType == 'comment'">
+                                {{enableContent()}}
+                                <mat-form-field  appearance="outline" fxFlex="100"  >
                                     <mat-label class="h2">Content</mat-label>
-                                    <textarea matInput  formControlName="Content" >
+                                    <textarea matInput  formControlName="content">
                                           
                                     </textarea>
                                     
                                     <mat-error>Content is required!</mat-error>
                                 </mat-form-field>
                             </div>
-                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo()" >Apply Effect</button>
+                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo()" > {{testEffectType()}} Apply Effect</button>
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-info" >
                                 <ng-template #title>
                                     <div>API Response</div>
