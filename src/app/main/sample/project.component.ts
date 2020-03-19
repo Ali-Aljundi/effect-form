@@ -1,20 +1,19 @@
 import { Component, OnDestroy, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { DialogUtility } from '@syncfusion/ej2-popups';
-import { Account,fb_accounts_infos } from 'Model/fb_accounts_infos';
+import { Account } from 'Model/fb_accounts_infos';
 import { FbAccountsInfosService } from 'Services/fb-accounts-infos.service';
 import { PostDataService } from 'Services/post-data.service';
 import {post_info} from 'Model/post_info';
 import {post_response} from 'Model/post_response';
-import { ToastComponent } from '@syncfusion/ej2-angular-notifications';
 import { Router } from '@angular/router';
-import $ from "jquery";
+
 @Component({
     selector     : 'project-dashboard',
     templateUrl  : './project.component.html',
     styleUrls    : ['./project.component.scss'],
 })
+
 export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
     @ViewChild('element',{static: true}) element;
@@ -23,8 +22,9 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     postResponse:post_response;
     postdata=new post_info();
     
-    loading = false;
-
+    refreshSpinner = false;
+    ApplySpinner=false;
+    toastColor;
     // Public
     public position = { X: 'Right' };
     public message:string;
@@ -85,6 +85,20 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         this.element.animation.hide.effect="ZoomOut";
     } 
 
+
+    /**
+     * On destroy
+     */
+    ngOnDestroy(): void
+    {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
     getInfo()
     {
         this._FbAccountsInfosService.getAccount()
@@ -99,27 +113,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
             err => { console.error(err); this.router.navigate(['/maintenance']) ;
              }
                 );
-            
       }
-refresh(){
-    this.getInfo();
-      this.message="Refresh Widget Value";
-      this.toastShow();
-   
-}
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
 
     SendInfo()
     {
@@ -127,30 +121,34 @@ refresh(){
         console.log(stringArray);
         this.form.value.urls=stringArray;
         this.postdata=this.form.value;
-        console.log(this.postdata);
         this.postDataService.postdata(this.postdata)
         .subscribe(
             data=>{
                 this.postResponse=data;
                 this.message=this.postResponse.message;
                 this.toastShow();
-                console.log(data)
             },
             err => { console.error(err); this.router.navigate(['/maintenance']) ; }
         );  
     }
 
     toastShow()
-    {
+    { var success="All effects created successfully.";
+      var warning='No enough accounts to create this effect.';
+        var index1 = success.localeCompare(this.message);
+        var index2 = warning.localeCompare(this.message);
+        if (index1==0) {
+            this.toastColor="success";
+        } else {if(index2==0)
+           {this.toastColor="warning"; }
+           else{this.toastColor="info";}
+        }
         setTimeout(
       () => {
           this.element.show();
-          this.loading=false
+          this.refreshSpinner=false
+          this.ApplySpinner=false;
       }, 500);
-    }
-    
-    save(): void {
-        this.loading = true;
     }
 
     enableContent():void{ 
@@ -163,6 +161,12 @@ refresh(){
           }else{
             this.form.controls.content.disable(); 
           }
+    }
+
+    refresh(){
+        this.getInfo();
+        this.message="Refresh Widget Value";
+        this.toastShow();
     }
     
 }
