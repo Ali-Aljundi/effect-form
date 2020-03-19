@@ -22,6 +22,14 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'format_align_center',
                 url      : '/form',
             },
+            {
+                id       : 'Accordion',
+                title    : 'Accordion',
+                translate: 'NAV.SAMPLE.TITLE',
+                type     : 'item',
+                icon     : 'format_align_center',
+                url      : '/Accordion',
+            },
 
         ]
     }
