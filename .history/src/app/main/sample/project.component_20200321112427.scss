@@ -1,0 +1,108 @@
+:host {
+
+    .cont {
+        //background-image: linear-gradient(#1e2129,#797c83);
+       // background: url(../../../assets/images/backgrounds/3.jpg) no-repeat;
+        //background-size:cover;
+        //margin-left: auto !important;
+      // margin-right: auto !important;
+        form {
+            padding: 25px  !important;
+            border-radius: 10px;
+            width: 100% !important;
+            min-width: 350px !important;
+            //max-width: 600px !important;
+        }
+
+        .form-errors-model {
+            flex: 1;
+
+            code {
+                background: none !important;
+            }
+        }
+
+        .horizontal-stepper-wrapper,
+        .vertical-stepper-wrapper {
+            max-width: 800px;
+        }
+    }
+}
+::ng-deep.mat-form-field-wrapper{
+    padding-bottom: 14px !important;
+
+
+}
+.colo{
+    background-color:rgb(30, 29, 37) ;
+ 
+}
+.mycol{
+	width:130px !important ;
+}
+//.content{
+  // margin-left: auto !important;
+   // margin-right: auto !important;
+//}
+
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: rgb(0, 9, 128) !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: rgb(0, 9, 128) !important;
+  }
+  ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: rgb(0, 9, 128) !important;;
+   }
+.icons{
+    width: 15%  !important;
+}
+.ref{
+    width:15px; 
+    margin-bottom: 4px;
+    margin-right: 5px;
+}
+.fuse-widget-front{
+    max-height: 200px !important;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.first{
+    max-height: 500px !important;
+   margin-left: 20% !important;
+}
+.toastcolor{
+    background-color: red;
+}
+.ref-button{
+    border-radius:10px;
+    width:auto;
+    margin-top: 20px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color:#039be5;
+}
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-top-color: #000000;
+    animation: spinner .8s linear infinite;
+  }
