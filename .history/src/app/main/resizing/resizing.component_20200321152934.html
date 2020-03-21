@@ -1,10 +1,10 @@
 
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box"  cdkDrag>test 1</div>
-    <div class="example-box"  cdkDrag>test 2</div>
+    <div class="example-box" ngForm="let item of Movies" cdkDrag>item</div>
+    
   </div>
   
-<ejs-accordion expandMode='Multiple'>
+<!--ejs-accordion expandMode='Multiple'>
     <e-accordionitems>
       <e-accordionitem expanded='true'>
         <ng-template #header>
@@ -110,4 +110,4 @@
               </ng-template>
             </e-accordionitem>
           </e-accordionitems>
-      </ejs-accordion>
+      </ejs-accordion-->
