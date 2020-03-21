@@ -40,7 +40,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'errors',
-        loadChildren: './main/errors/error404/error404.module#Error404Module' 
+        loadChildren: './main/maintenance/maintenence.module#MaintenanceModule' 
     },
     {
         path: 'login',

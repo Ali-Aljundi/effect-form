@@ -23,37 +23,37 @@ import {LoginModule} from './login/login.module';
 const appRoutes: Routes = [
     {
         path      : 'form',
-        loadChildren : './main/sample/project.module#ProjectDashboardModule'
+        loadChildren :'./main/sample/project.module#ProjectDashboardModule'
     },
    
     {
         path      : 'dashboard',
-        loadChildren : './main/resizing/resizing.module#ResizingModule'
+        loadChildren :'./main/resizing/resizing.module#ResizingModule'
     },
     {
-        path      : 'accordion',
-        loadChildren : './main/accordion/accordion.module#AccordionModule'
+        path      : 'Accordion',
+        loadChildren :'./main/accordion/accordion.module#accordionModule'
     },
     {
         path: 'maintenance',
-        loadChildren: './main/maintenance/maintenance.module#MaintenanceModule' 
+        loadChildren: './main/errors/404/error-404.module#Error404Module' 
     },
     {
         path: 'errors',
-        loadChildren: './main/errors/error404/error404.module#Error404Module' 
+        loadChildren: './main/maintenance/maintenence.module#MaintenanceModule' 
     },
     {
-        path: 'login',
-        component: LoginComponent,
+        path:'login',
+        component:LoginComponent,
     },
     {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
+        path:'',
+        redirectTo:'/login',
+        pathMatch:'full'
     },
     {
-        path: '**',
-        redirectTo: '/errors'
+        path:'**',
+        redirectTo:'/errors'
     }
 
 

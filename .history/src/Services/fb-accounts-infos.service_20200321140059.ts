@@ -12,8 +12,8 @@ export class FbAccountsInfosService {
   constructor(private http: HttpClient) { }
 
 
-  getAccount(): Observable<Account>{
+  getAccount():Observable<Account>{
     return this.http.get<Account>(this._url);
-    // return of (this.data);
+    //return of (this.data);
   }
 }

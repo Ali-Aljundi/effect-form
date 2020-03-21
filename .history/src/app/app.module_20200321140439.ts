@@ -31,16 +31,16 @@ const appRoutes: Routes = [
         loadChildren : './main/resizing/resizing.module#ResizingModule'
     },
     {
-        path      : 'accordion',
-        loadChildren : './main/accordion/accordion.module#AccordionModule'
+        path      : 'Accordion',
+        loadChildren : './main/accordion/accordion.module#accordionModule'
     },
     {
         path: 'maintenance',
-        loadChildren: './main/maintenance/maintenance.module#MaintenanceModule' 
+        loadChildren: './main/errors/404/error-404.module#Error404Module' 
     },
     {
         path: 'errors',
-        loadChildren: './main/errors/error404/error404.module#Error404Module' 
+        loadChildren: './main/maintenance/maintenence.module#MaintenanceModule' 
     },
     {
         path: 'login',

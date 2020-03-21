@@ -124,7 +124,7 @@
                                 </mat-form-field>
                             </div>
                             
-                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo()" [class.spinner]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true"  >  Apply Effect</button>
+                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo()" [class.spinner]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true"  > {{testEffectType()}} Apply Effect</button>
                             
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-{{toastColor}}" >
                                 <ng-template #title>
