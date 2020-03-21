@@ -15,8 +15,13 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { ProjectDashboardComponent } from 'app/main/sample/project.component';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
+<<<<<<< HEAD
 
 
+=======
+import { ToastModule } from '@syncfusion/ej2-angular-notifications';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome/'
+>>>>>>> da98d46aac862433dc86a43b228f8fc89b3af9ce
 const routes: Routes = [
     {
         path     : '**',
@@ -44,7 +49,7 @@ const routes: Routes = [
         FuseSidebarModule,
         FuseWidgetModule,
         RouterModule.forChild(routes),
-
+        FontAwesomeModule,
         MatButtonModule,
         MatFormFieldModule,
         MatIconModule,
