@@ -37,18 +37,36 @@ const appRoutes: Routes = [
         loadChildren: './main/maintenance/maintenance.module#MaintenanceModule' 
     },
     {
+<<<<<<< HEAD
         path: 'errors',
+<<<<<<< HEAD
         loadChildren: './main/errors/error404/error404.module#Error404Module' 
     },
     {
         path: 'accordion',
         loadChildren: './main/accordion/accordion.module#AccordionModule' 
+=======
+        loadChildren: './main/maintenance/maintenence.module#MaintenanceModule' 
+=======
+        path: 'maintenance',
+        loadChildren: './main/errors/404/error-404.module#Error404Module' 
+    },
+    {
+        path: 'errors',
+        loadChildren: './main/maintenance/maintenence.module#MaintenanceModule' 
+    },
+    {
+        path:'login',
+        component:LoginComponent,
+>>>>>>> da98d46aac862433dc86a43b228f8fc89b3af9ce
+>>>>>>> 0253df4c28e438a8b6b591a4ea2ca940d18f2569
     },
     {
         path: 'login',
         component: LoginComponent,
     },
     {
+<<<<<<< HEAD
         path: '',
         redirectTo: '/login',
         pathMatch: 'full'
@@ -56,6 +74,10 @@ const appRoutes: Routes = [
     {
         path: '**',
         redirectTo: '/errors'
+=======
+        path:'**',
+        redirectTo:'/errors'
+>>>>>>> da98d46aac862433dc86a43b228f8fc89b3af9ce
     }
 
 

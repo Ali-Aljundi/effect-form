@@ -1,11 +1,21 @@
 :host {
 
     .cont {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0253df4c28e438a8b6b591a4ea2ca940d18f2569
         //background-image: linear-gradient(#1e2129,#797c83);
         background: url(../../../assets/images/backgrounds/3.jpg) no-repeat;
         background-size:cover;
         //margin-left: auto !important;
       // margin-right: auto !important;
+<<<<<<< HEAD
+=======
+>>>>>>> da98d46aac862433dc86a43b228f8fc89b3af9ce
+>>>>>>> 0253df4c28e438a8b6b591a4ea2ca940d18f2569
         form {
             padding: 25px  !important;
             border-radius: 10px;
@@ -32,6 +42,7 @@
     padding-bottom: 14px !important;
 
 
+<<<<<<< HEAD
 }
 .colo{
     background-color:rgb(30, 29, 37) ;
@@ -46,6 +57,13 @@
 //}
 
 
+=======
+<<<<<<< HEAD
+        .hidden {display:none;}
+    }
+}
+=======
+>>>>>>> 0253df4c28e438a8b6b591a4ea2ca940d18f2569
 ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: rgb(0, 9, 128) !important;
@@ -105,4 +123,9 @@
     border: 2px solid #ffffff;
     border-top-color: #000000;
     animation: spinner .8s linear infinite;
+<<<<<<< HEAD
   }
+=======
+  }
+>>>>>>> da98d46aac862433dc86a43b228f8fc89b3af9ce
+>>>>>>> 0253df4c28e438a8b6b591a4ea2ca940d18f2569
