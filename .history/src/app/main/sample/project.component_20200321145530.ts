@@ -123,11 +123,11 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         console.log(stringArray);
         this.form.value.urls = stringArray;
         let stringArrayContnent;
-        if ((document.getElementById('contents') as HTMLInputElement) != null) {
-        stringArrayContnent = (document.getElementById('contents') as HTMLInputElement).value.split(';');
+        if ((document.getElementById('contents') as HTMLInputElement).value == null) {
+            stringArrayContnent = '';
         }
         else{
-            stringArrayContnent = [''];
+        stringArrayContnent = (document.getElementById('contents') as HTMLInputElement).value.split(';');
         }
         console.log(stringArrayContnent);
         this.form.value.contents = stringArrayContnent;

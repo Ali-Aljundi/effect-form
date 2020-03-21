@@ -73,7 +73,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
              // Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
-            contents      : [ {
+            content      : [ {
                 value   : '',
                 disabled: true
             }
@@ -122,16 +122,6 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         const stringArray = (document.getElementById('urls') as HTMLInputElement).value.split(';');
         console.log(stringArray);
         this.form.value.urls = stringArray;
-        let stringArrayContnent;
-        if ((document.getElementById('contents') as HTMLInputElement) != null) {
-        stringArrayContnent = (document.getElementById('contents') as HTMLInputElement).value.split(';');
-        }
-        else{
-            stringArrayContnent = [''];
-        }
-        console.log(stringArrayContnent);
-        this.form.value.contents = stringArrayContnent;
-
         this.postdata = this.form.value;
         console.log(this.postdata);
         this.postDataService.postdata(this.postdata)
@@ -166,7 +156,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     }
 
     enableContent(): void{ 
-        this.form.controls.contents.enable();
+        this.form.controls.content.enable();
     }
 
     testEffectType(): void{
