@@ -1,6 +1,6 @@
 export class post_info
 { 
-        registerAccountType:string;
+        registeredAccountType:string;
         count :number;
         urls:string[];
         effectType:string;

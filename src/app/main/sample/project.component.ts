@@ -7,6 +7,8 @@ import { PostDataService } from 'Services/post-data.service';
 import {post_info} from 'Model/post_info';
 import {post_response} from 'Model/post_response';
 import { Router } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector     : 'project-dashboard',
@@ -21,7 +23,8 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     account=new Account();
     postResponse:post_response;
     postdata=new post_info();
-    
+    textAreasList:any = [];
+
     refreshSpinner = false;
     ApplySpinner=false;
     toastColor;
@@ -69,8 +72,8 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-             urls: [[''], [Validators.required,Validators.pattern('https?://.+')]],
-             //Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')
+             urls: ['', [Validators.required]],
+             //,Validators.pattern('https?://.+')
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
             contents      : [ {
@@ -127,9 +130,13 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         {
              this.form.controls.contents.disable(); 
         }
-        var urls = (<HTMLInputElement>document.getElementById("urls")).value.split(';');
-        this.form.value.urls=urls;
-        this.postdata=this.form.value;
+
+       this.postdata.url_type=this.form.value.url_type;
+       this.postdata.contents=this.form.value.contents;
+       this.postdata.count=this.form.value.count;
+       this.postdata.effectType=this.form.value.effectType;
+       this.postdata.registeredAccountType=this.form.value.registerdAccountType;
+       // this.postdata=this.form.value;
         console.log(this.postdata);
         this.postDataService.postdata(this.postdata)
         .subscribe(
@@ -177,6 +184,33 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         this.message="Refresh Widget Value";
         this.toastShow();
     }
-    
+public urls:any[]=[];
+
+    addTextarea(){     
+        this.form.addControl(('URL'+ (this.textAreasList.length + 1)), this._formBuilder.control(''))
+        this.textAreasList.push('text_area'+ (this.textAreasList.length + 1));
+       
+    }
+
+
+    removeTextArea(index){
+        this.textAreasList.splice(index, 1);
+        this.urls.splice(index+1,1);
+        this.textAreasList.length -1;
+        console.log(this.form.get('URL'+(index+1)).value);
+        this.form.removeControl('URL'+(index+1));
+    }
+
+    JoinUrls(){
+       // console.log(this.textAreasList.length)
+       this.urls[0]=this.form.value.urls;
+        for (let index = 0; index < this.textAreasList.length; index++) {
+         this.urls[index+1]=(this.form.get('URL'+(index+1)).value)
+         //this.form.controls.contents.disable(); 
+      }
+      this.form.value.urls=this.urls;
+      this.postdata.urls=this.urls
+      //  console.log(this.form.value.urls) 
+    }
 }
 
