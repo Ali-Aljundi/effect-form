@@ -126,7 +126,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         if ((document.getElementById('contents') as HTMLInputElement) != null) {
         stringArrayContnent = (document.getElementById('contents') as HTMLInputElement).value.split(';');
         }
-        else {
+        else{
             stringArrayContnent = [''];
         }
         console.log(stringArrayContnent);

@@ -81,7 +81,7 @@
 }
 .ref-button{
     border-radius:10px;
-    width: auto;
+    width:50%;
     margin-top: 20px;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -97,9 +97,10 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 14px;
-    height: 14px;
-    margin-top: -8px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
     margin-left: -40px;
     border-radius: 50%;
     border: 2px solid #ffffff;

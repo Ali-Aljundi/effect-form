@@ -1,6 +1,6 @@
 
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" cdkDrag > 
+    <div class="example-box"  cdkDragHandle ='true'> 
         <ejs-accordion expandMode='Multiple'>
 
             <e-accordionitems>
@@ -43,11 +43,10 @@
             
       </ejs-accordion>
     </div>
-
-    <div class="example-box" cdkDrag> 
+    <div class="example-box"  cdkDragHandle ='false'> 
         <ejs-accordion expandMode='Multiple'>
             <e-accordionitems >
-              <e-accordionitem >
+              <e-accordionitem expanded='true'>
                 <ng-template #header>
                   <div>{{movies[1]}}</div>
                 </ng-template>
@@ -85,7 +84,7 @@
       </ejs-accordion>
     </div>
 
-    <div class="example-box" cdkDrag> 
+    <div class="example-box"  cdkDragHandle ='true'> 
         <ejs-accordion expandMode='Multiple'>
 
             <e-accordionitems >
@@ -130,7 +129,7 @@
             
       </ejs-accordion>
     </div>
-</div>
+  </div>
 
 
     <!--ejs-accordion expandMode='Multiple'>

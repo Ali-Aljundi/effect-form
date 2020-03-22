@@ -119,6 +119,12 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     // tslint:disable-next-line:typedef
     SendInfo()
     {
+        if (this.form.value.effectType === 'comment') {
+            this.form.controls.content.enable(); 
+          }else{
+            this.form.controls.content.disable(); 
+          }
+
         const stringArray = (document.getElementById('urls') as HTMLInputElement).value.split(';');
         console.log(stringArray);
         this.form.value.urls = stringArray;
@@ -126,7 +132,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         if ((document.getElementById('contents') as HTMLInputElement) != null) {
         stringArrayContnent = (document.getElementById('contents') as HTMLInputElement).value.split(';');
         }
-        else {
+        else{
             stringArrayContnent = [''];
         }
         console.log(stringArrayContnent);
@@ -167,14 +173,6 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 
     enableContent(): void{ 
         this.form.controls.contents.enable();
-    }
-
-    testEffectType(): void{
-          if (this.form.value.effectType === 'comment') {
-            this.form.controls.content.enable(); 
-          }else{
-            this.form.controls.content.disable(); 
-          }
     }
 
     // tslint:disable-next-line:typedef

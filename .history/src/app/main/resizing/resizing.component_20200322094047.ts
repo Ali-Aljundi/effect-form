@@ -9,8 +9,6 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class ResizingComponent implements OnInit
     {
-       test = 'cdkDrag';
-
       // tslint:disable-next-line:variable-name
       constructor() { }
       // tslint:disable-next-line:typedef
@@ -63,5 +61,7 @@ export class ResizingComponent implements OnInit
         public id: any[] = ['chart1', 'chart2', 'chart3', 'chart4' , 'chart5', 'chart6'];
         // tslint:disable-next-line:typedef
         // tslint:disable-next-line:use-lifecycle-interface
+
+  
       
   }

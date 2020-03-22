@@ -1,12 +1,13 @@
 
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" cdkDrag > 
+    <div class="example-box"  cdkDrag> 
         <ejs-accordion expandMode='Multiple'>
 
             <e-accordionitems>
+              
               <e-accordionitem>
           <ng-template #header>
-            <div >{{movies[0]}}</div>
+            <div >ASP.NET</div>
           </ng-template>
           <ng-template #content>
               <div class="control-section" >
@@ -39,17 +40,21 @@
                       </div>
                   </ng-template>
               </e-accordionitem>
+
             </e-accordionitems>
             
       </ejs-accordion>
     </div>
-
-    <div class="example-box" cdkDrag> 
+    <div class="example-box"  cdkDrag> 
         <ejs-accordion expandMode='Multiple'>
-            <e-accordionitems >
-              <e-accordionitem >
+
+            <e-accordionitems>
+              
+
+              
+              <e-accordionitem>
                 <ng-template #header>
-                  <div>{{movies[1]}}</div>
+                  <div>ASP.NET MVC</div>
                 </ng-template>
                 <ng-template #content>
                   <div class="control-section" >
@@ -81,18 +86,21 @@
                       </div>
                 </ng-template>
               </e-accordionitem>
-            </e-accordionitems>    
+              
+
+            </e-accordionitems>
+            
       </ejs-accordion>
     </div>
 
-    <div class="example-box" cdkDrag> 
+    <div class="example-box"  cdkDrag> 
         <ejs-accordion expandMode='Multiple'>
 
-            <e-accordionitems >
+            <e-accordionitems>
               
                 <e-accordionitem>
                     <ng-template #header>
-                      <div>{{movies[2]}}</div>
+                      <div class="example-box"  cdkDrag>JavaScript</div>
                     </ng-template>
                     <ng-template #content>
                       <div class="control-section" >
@@ -130,7 +138,7 @@
             
       </ejs-accordion>
     </div>
-</div>
+  </div>
 
 
     <!--ejs-accordion expandMode='Multiple'>
