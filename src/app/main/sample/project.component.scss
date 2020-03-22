@@ -106,18 +106,17 @@
       width: 120px !important;
   }
   .addText{
-  background-color: green !important;
-  color: white !important;
-  max-width: 100px;
+margin-left: 5px ;
+color:green ;
+cursor: pointer;
+
   }
+
   .deleteText{
-     width: 30px !important;
-     height: 30px !important;
-     margin-bottom: 10px !important;
-     background-color: #f44336 !important;
-     color: white;
-     border-style:solid;
-     border-radius: 20px ;
+     // margin-left: 20px !important;
+
+    color: red;
+     cursor: pointer;
   }
   .urls{
       max-width: auto !important;
@@ -125,9 +124,12 @@
   .urlsMargin{ 
       padding-bottom: 2px !important;
       padding-left: 5px !important;
+      padding-right: 1px !important;
       max-height: 80px !important;
   }
-  .main-text{
-      color: red;
+  ::ng-deep .mat-form-field-flex{
+    padding-right: 1px !important;
   }
+
+
  

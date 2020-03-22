@@ -101,13 +101,14 @@
                                 <mat-form-field class="urlsMargin" appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL-{{textarea_index+2}}</mat-label>
                                     <textarea matInput formControlName="URL{{textarea_index+1}}" class="urls"  required name="{{textarea}}"></textarea>
-                                    <mat-icon matSuffix class="main-text" (click)="removeTextArea(textarea_index)">delete_forever</mat-icon>
+                                    <mat-icon matSuffix class="deleteText" (click)="removeTextArea(textarea_index)">delete_forever</mat-icon>
                                 </mat-form-field>
                             </div>
 
-                            <div style="padding-bottom: 15px !important;">
-                            <button class="addText"  mat-raised-button color="basic" (click)="addTextarea()">Add URL</button>
+                            <div class="addText">
+                            <mat-icon matSuffix  (click)="addTextarea()"  >add_box</mat-icon>
                             </div>
+
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                                 <mat-form-field appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL Type</mat-label>
