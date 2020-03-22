@@ -73,8 +73,8 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
              //Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
-            content      : [ {
-                value   : '',
+            contents      : [ {
+                value   : [''],
                 disabled:true
             }
         ] 
@@ -116,14 +116,25 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
       }
 
     SendInfo()
-    {
-        var stringArray = (<HTMLInputElement>document.getElementById("urls")).value.split(',');
-        console.log(stringArray);
-        this.form.value.urls=stringArray;
+    { 
+        if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' )
+        {
+            this.form.controls.contents.enable(); 
+            var contents = (<HTMLInputElement>document.getElementById("contents")).value.split(';');
+            this.form.value.contents=contents;
+        }
+        else
+        {
+             this.form.controls.contents.disable(); 
+        }
+        var urls = (<HTMLInputElement>document.getElementById("urls")).value.split(';');
+        this.form.value.urls=urls;
         this.postdata=this.form.value;
+        console.log(this.postdata);
         this.postDataService.postdata(this.postdata)
         .subscribe(
-            data=>{
+            data=>
+            {
                 this.postResponse=data;
                 this.message=this.postResponse.message;
                 this.toastShow();
@@ -133,37 +144,35 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     }
 
     toastShow()
-    { var success="All effects created successfully.";
-      var warning='No enough accounts to create this effect.';
+    {
+        var success="All effects created successfully.";
+        var warning='No enough accounts to create this effect.';
         var index1 = success.localeCompare(this.message);
         var index2 = warning.localeCompare(this.message);
-        if (index1==0) {
+        if (index1==0)
+        {
             this.toastColor="success";
         } else {if(index2==0)
            {this.toastColor="warning"; }
            else{this.toastColor="info";}
         }
-        setTimeout(
+
+    setTimeout(
       () => {
+        this.element.timeOut=1000;
           this.element.show();
+
           this.refreshSpinner=false
           this.ApplySpinner=false;
-      }, 500);
+      }, 600);
     }
 
     enableContent():void{ 
-        this.form.controls.content.enable();
+        this.form.controls.contents.enable();
     }
 
-    testEffectType():void{
-          if (this.form.value.effectType == 'comment') {
-            this.form.controls.content.enable(); 
-          }else{
-            this.form.controls.content.disable(); 
-          }
-    }
 
-    refresh(){
+    refreshWidget(){
         this.getInfo();
         this.message="Refresh Widget Value";
         this.toastShow();

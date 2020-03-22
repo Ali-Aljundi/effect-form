@@ -63,11 +63,6 @@
 .icons{
     width: 15%  !important;
 }
-.ref{
-    width:15px; 
-    margin-bottom: 4px;
-    margin-right: 5px;
-}
 .fuse-widget-front{
     max-height: 200px !important;
     overflow: hidden;
@@ -82,7 +77,7 @@
 }
 .ref-button{
     border-radius:10px;
-    width:auto;
+    width:120px;
     margin-top: 20px;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -97,7 +92,7 @@
     box-sizing: border-box;
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 8%;
     width: 20px;
     height: 20px;
     margin-top: -10px;
@@ -106,4 +101,7 @@
     border: 2px solid #ffffff;
     border-top-color: #000000;
     animation: spinner .8s linear infinite;
+  } 
+  .ref{
+      width: 120px !important;
   }

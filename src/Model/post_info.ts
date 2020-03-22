@@ -5,5 +5,5 @@ export class post_info
         urls:string[];
         effectType:string;
         url_type:string;
-        content:string;
+        contents:string[];
 }
