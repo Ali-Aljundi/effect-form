@@ -23,8 +23,12 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     account=new Account();
     postResponse:post_response;
     postdata=new post_info();
-    textAreasList:any = [];
-
+    urlList:any = [];
+    public urls:any[]=[];
+    contentList:any = [];
+    public contents:any[]=[];
+    classURL;
+    classContent;
     refreshSpinner = false;
     ApplySpinner=false;
     toastColor;
@@ -123,8 +127,6 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' )
         {
             this.form.controls.contents.enable(); 
-            var contents = (<HTMLInputElement>document.getElementById("contents")).value.split(';');
-            this.form.value.contents=contents;
         }
         else
         {
@@ -132,7 +134,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         }
 
        this.postdata.url_type=this.form.value.url_type;
-       this.postdata.contents=this.form.value.contents;
+       //this.postdata.contents=this.form.value.contents;
        this.postdata.count=this.form.value.count;
        this.postdata.effectType=this.form.value.effectType;
        this.postdata.registeredAccountType=this.form.value.registerdAccountType;
@@ -184,33 +186,62 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         this.message="Refresh Widget Value";
         this.toastShow();
     }
-public urls:any[]=[];
 
-    addTextarea(){     
-        this.form.addControl(('URL'+ (this.textAreasList.length + 1)), this._formBuilder.control(''))
-        this.textAreasList.push('text_area'+ (this.textAreasList.length + 1));
+
+    addURLTextarea(){     
+        this.form.addControl(('URL'+ (this.urlList.length + 1)), this._formBuilder.control(''))
+        this.urlList.push('url'+ (this.urlList.length + 1));
+        this.classURL="Groub"
        
     }
 
-
-    removeTextArea(index){
-        this.textAreasList.splice(index, 1);
+    removeURLTextArea(index){
+        this.urlList.splice(index, 1);
         this.urls.splice(index+1,1);
-        this.textAreasList.length -1;
-        console.log(this.form.get('URL'+(index+1)).value);
+        this.urlList.length -1;
         this.form.removeControl('URL'+(index+1));
+        console.log(this.urlList.length)
+        if (this.urlList.length==0) {
+            this.classURL="";
+        }
     }
 
     JoinUrls(){
-       // console.log(this.textAreasList.length)
        this.urls[0]=this.form.value.urls;
-        for (let index = 0; index < this.textAreasList.length; index++) {
+        for (let index = 0; index < this.urlList.length; index++) {
          this.urls[index+1]=(this.form.get('URL'+(index+1)).value)
-         //this.form.controls.contents.disable(); 
       }
       this.form.value.urls=this.urls;
       this.postdata.urls=this.urls
-      //  console.log(this.form.value.urls) 
     }
+
+    addContentTextarea(){     
+        this.form.addControl(('Content'+ (this.contentList.length + 1)), this._formBuilder.control(''))
+        this.contentList.push('content'+ (this.contentList.length + 1));
+       this.classContent="Groub";
+    }
+
+    removeContentTextArea(index){
+        this.contentList.splice(index, 1);
+        this.contents.splice(index+1,1);
+        this.contentList.length -1;
+        this.form.removeControl('Content'+(index+1));
+        console.log(this.contentList.length)
+        if (this.contentList.length==0) {
+            this.classContent="";
+        }
+    }
+
+    JoinContents(){
+        this.contents[0]=this.form.value.contents;
+         for (let index = 0; index < this.contentList.length; index++) {
+          this.contents[index+1]=(this.form.get('Content'+(index+1)).value)
+       }
+        
+       this.form.value.contents=this.contents;
+       if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' ){
+       this.postdata.contents=this.contents;
+       }
+     }
 }
 

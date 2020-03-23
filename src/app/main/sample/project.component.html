@@ -79,7 +79,7 @@
                                 </mat-form-field>
                             </div>
 
-                            <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-form-field class="mb-16" appearance="outline" fxFlex="100">
                                 <mat-label  class="h2" >Effect Type</mat-label>
                                 <mat-select formControlName="effectType" >
                                     <mat-option *ngFor="let item of account.fb_effect_types" [(value)]="item" >
@@ -89,28 +89,28 @@
                                 <mat-icon matSuffix class="secondary-text">list_alt</mat-icon>
                                 <mat-error>Effect Type is required!</mat-error>
                             </mat-form-field>
-
+                            
+                            <div class="{{classURL}}" fxLayout="column" >
+                        
                             <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
-                                <mat-form-field class="urlsMargin" appearance="outline" fxFlex="100" >
+                                <mat-form-field id="firstone" appearance="outline" fxFlex="100" >
                                     <mat-label class="h2">URL</mat-label>
-                                        <textarea  matInput formControlName="urls" id="asf" ></textarea>                                                         
-                                </mat-form-field>
-                               
+                                    <mat-icon matSuffix class="addText"  (click)="addURLTextarea()"  >add_circle</mat-icon>   
+                                    <textarea  matInput formControlName="urls" class="urls" ></textarea>                                                              
+                                </mat-form-field>                                
                             </div>
-                            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngFor="let textarea of textAreasList; let textarea_index= index">
-                                <mat-form-field class="urlsMargin" appearance="outline" fxFlex="100" >
-                                    <mat-label  class="h2">URL-{{textarea_index+2}}</mat-label>
-                                    <textarea matInput formControlName="URL{{textarea_index+1}}" class="urls"  required name="{{textarea}}"></textarea>
-                                    <mat-icon matSuffix class="deleteText" (click)="removeTextArea(textarea_index)">delete_forever</mat-icon>
+                            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngFor="let url of urlList; let url_index= index">
+                                <mat-form-field  appearance="outline" fxFlex="100" >
+                                    <mat-label  class="h2">URL-{{url_index+2}}</mat-label>
+                                    <textarea matInput formControlName="URL{{url_index+1}}" class="urls"  required name="{{url}}"></textarea>
+                                    <mat-icon matSuffix class="deleteText" (click)="removeURLTextArea(url_index)">delete</mat-icon>
                                 </mat-form-field>
                             </div>
 
-                            <div class="addText">
-                            <mat-icon matSuffix  (click)="addTextarea()"  >add_box</mat-icon>
                             </div>
-
+                           
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
-                                <mat-form-field appearance="outline" fxFlex="100" >
+                                <mat-form-field class="mb-16" appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL Type</mat-label>
                                     <mat-select formControlName="url_type" required>
                                         <mat-option *ngFor="let item of account.fb_url_types" [value]="item">
@@ -121,20 +121,29 @@
                                     <mat-error>URL Type is required!</mat-error>
                                 </mat-form-field>
                             </div>
-                            
+
+
+                            <div class="{{classContent}}" fxLayout="column" *ngIf="form.value.effectType == 'comment' || form.value.effectType == 'share'">
                             <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngIf="form.value.effectType == 'comment' || form.value.effectType == 'share'">
                                 {{enableContent()}}
-                                <mat-form-field  appearance="outline" fxFlex="100"  >
+                                <mat-form-field  id="firstone"  appearance="outline" fxFlex="100"  >
                                     <mat-label class="h2">Content</mat-label>
-                                    <textarea id="contents" matInput  formControlName="contents">
-                                          
-                                    </textarea>
-                                    
+                                    <textarea  matInput  formControlName="contents" class="urls"></textarea>
+                                    <mat-icon matSuffix class="addText"  (click)="addContentTextarea()"  >add_circle</mat-icon>  
                                     <mat-error>Content is required!</mat-error>
                                 </mat-form-field>
                             </div>
-                            
-                            <button [disabled]="form.invalid" mat-raised-button color="accent" (click)="SendInfo()" [class.spinner]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true" (click)="JoinUrls()"  >Apply Effect</button>
+
+                            <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto"  *ngFor="let content of contentList; let content_index= index" >
+                                <mat-form-field class="urlsMargin" appearance="outline" fxFlex="100" >
+                                    <mat-label  class="h2">Content-{{content_index+2}}</mat-label>
+                                    <textarea matInput formControlName="Content{{content_index+1}}" class="urls"  required name="{{content}}"></textarea>
+                                    <mat-icon matSuffix class="deleteText" (click)="removeContentTextArea(content_index)">delete</mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                            <button class="mt-20"  mat-raised-button color="accent" (click)="SendInfo()" [class.spinner]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true" (click)="JoinUrls()" (click)=" JoinContents()"  >Apply Effect</button>
                             
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-{{toastColor}}" >
                                 <ng-template #title>
