@@ -18,6 +18,11 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
+    color="accent";
+    text='refresh';
+    turn:boolean;
+    size='120';
+
     @ViewChild('element',{static: true}) element;
     form: FormGroup;
     account=new Account();
@@ -170,7 +175,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
       () => {
         this.element.timeOut=1000;
           this.element.show();
-
+          this.turn=false;
           this.refreshSpinner=false
           this.ApplySpinner=false;
       }, 600);
@@ -183,6 +188,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 
     refreshWidget(){
         this.getInfo();
+        this.turn=true;
         this.message="Refresh Widget Value";
         this.toastShow();
     }

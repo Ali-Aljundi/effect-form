@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import {LoginComponent} from './login/login.component';
 import {LoginModule} from './login/login.module';
+import { SpinnerButtonComponent } from './Component/spinner-button/spinner-button.component';
 
 const appRoutes: Routes = [
     {

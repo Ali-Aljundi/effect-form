@@ -16,6 +16,7 @@ import { ProjectDashboardComponent } from 'app/main/sample/project.component';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { ToastModule } from '@syncfusion/ej2-angular-notifications';
+import {SpinnerButtonComponent} from '../../Component/spinner-button/spinner-button.component'
 const routes: Routes = [
     {
         path     : '**',
@@ -25,7 +26,8 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        ProjectDashboardComponent
+        ProjectDashboardComponent,
+        SpinnerButtonComponent
     ],
     imports     : [
         RouterModule.forChild(routes),
