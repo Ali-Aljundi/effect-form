@@ -18,9 +18,11 @@ export class ResizingComponent implements OnInit
       panelOpenState = false;
       // tslint:disable-next-line:member-ordering
       movies = [
-        { value: 'First Section', disabled: false},
-        { value: 'Second Section', disabled: false},
-        { value: 'Third Section', disabled: false}
+        'First Section',
+        'Second Section',
+        'Third Section',
+        'Forth Section',
+        'Fifth Section'
       ];
     
       // tslint:disable-next-line:typedef
@@ -59,11 +61,5 @@ export class ResizingComponent implements OnInit
         public id: any[] = ['chart1', 'chart2', 'chart3', 'chart4' , 'chart5', 'chart6'];
         // tslint:disable-next-line:typedef
         // tslint:disable-next-line:use-lifecycle-interface
-
-        onExpand(index: number): void { 
-              this.movies[index].disabled = !this.movies[index].disabled;
-              console.log('disabled ' + index  + ' ' + this.movies[index].disabled);
-        }
-
-
+      
   }

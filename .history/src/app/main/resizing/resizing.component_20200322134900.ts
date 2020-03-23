@@ -60,10 +60,20 @@ export class ResizingComponent implements OnInit
         // tslint:disable-next-line:typedef
         // tslint:disable-next-line:use-lifecycle-interface
 
-        onExpand(index: number): void { 
-              this.movies[index].disabled = !this.movies[index].disabled;
+        onExpand(index: number): void{ 
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < this.movies.length; i++) {
+            if (index === i){
+              this.movies[index].disabled = true;
               console.log('disabled ' + index  + ' ' + this.movies[index].disabled);
+            }
+            else{
+              this.movies[i].disabled = false;
+              console.log('disabled ' + index  + ' ' + this.movies[index].disabled);
+            }
+            
+          }
+         
         }
-
-
+      
   }

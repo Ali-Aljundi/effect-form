@@ -18,7 +18,8 @@ export class ResizingComponent implements OnInit
       panelOpenState = false;
       // tslint:disable-next-line:member-ordering
       movies = [
-        { value: 'First Section', disabled: false},
+        // tslint:disable-next-line:max-line-length
+        { value: '<ejs-accordion ><e-accordionitems ><e-accordionitem id="first-e-accordionitem"><ng-template #header><div (click)="onExpand(0)"> {{movies[0].value}} </div></ng-template><ng-template #content><div class="control-section" ><ejs-dashboardlayout id=\'first\' #editLayout  [columns]=\'5\' [allowResizing]=\'true\' [cellAspectRatio]=\'1\' [cellSpacing]=\'cellSpacing\' [showGridLines]=\'showGridLines\' [draggableHandle]=\'draggableHandle\'><e-panels><e-panel id="tag-cloud-chart1" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1"><ng-template #content><tag-cloud-chart [id]=\'id[0]\'  ></tag-cloud-chart></ng-template></e-panel><e-panel id="app-first-chart2" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1"><ng-template #content><app-first-chart [id]=\'id[1]\'></app-first-chart></ng-template></e-panel></e-panels></ejs-dashboardlayout></div></ng-template></e-accordionitem></e-accordionitems></ejs-accordion>', disabled: false},
         { value: 'Second Section', disabled: false},
         { value: 'Third Section', disabled: false}
       ];
@@ -60,7 +61,7 @@ export class ResizingComponent implements OnInit
         // tslint:disable-next-line:typedef
         // tslint:disable-next-line:use-lifecycle-interface
 
-        onExpand(index: number): void { 
+        onExpand(index: number): void{ 
               this.movies[index].disabled = !this.movies[index].disabled;
               console.log('disabled ' + index  + ' ' + this.movies[index].disabled);
         }

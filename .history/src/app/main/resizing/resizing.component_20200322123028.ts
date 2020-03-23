@@ -9,6 +9,8 @@ import { CdkDragDrop, moveItemInArray, CdkDrag } from '@angular/cdk/drag-drop';
 })
 export class ResizingComponent implements OnInit
     {
+      isEnable = false;
+
       // tslint:disable-next-line:variable-name
       constructor() { }
       // tslint:disable-next-line:typedef
@@ -18,9 +20,11 @@ export class ResizingComponent implements OnInit
       panelOpenState = false;
       // tslint:disable-next-line:member-ordering
       movies = [
-        { value: 'First Section', disabled: false},
-        { value: 'Second Section', disabled: false},
-        { value: 'Third Section', disabled: false}
+        'First Section',
+        'Second Section',
+        'Third Section',
+        'Forth Section',
+        'Fifth Section'
       ];
     
       // tslint:disable-next-line:typedef
@@ -60,10 +64,16 @@ export class ResizingComponent implements OnInit
         // tslint:disable-next-line:typedef
         // tslint:disable-next-line:use-lifecycle-interface
 
-        onExpand(index: number): void { 
-              this.movies[index].disabled = !this.movies[index].disabled;
-              console.log('disabled ' + index  + ' ' + this.movies[index].disabled);
+        Disable(): void{
+          if (this.isEnable === true){
+            this.isEnable = false;
+            console.log('isEnable' + this.isEnable);
+          }
+          else {
+            this.isEnable = true;
+            console.log('isEnable' + this.isEnable);
+          }
+          
         }
-
-
+      
   }

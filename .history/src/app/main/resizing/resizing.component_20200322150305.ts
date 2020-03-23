@@ -19,7 +19,35 @@ export class ResizingComponent implements OnInit
       // tslint:disable-next-line:member-ordering
       movies = [
         { value: 'First Section', disabled: false},
-        { value: 'Second Section', disabled: false},
+        { value: `                <ng-template #content>
+        <div class="control-section"  >
+            <ejs-dashboardlayout id='second' #editLayout  [columns]='5' [allowResizing]='true' [cellAspectRatio]='1' [cellSpacing]='cellSpacing' [showGridLines]='showGridLines' [draggableHandle]='draggableHandle'>
+                <e-panels>
+                <e-panel id="f-3" [sizeX]="1" [sizeY]="1"  [row]="0" [col]="0">
+                    <ng-template  #content>
+                        <app-widget [title]='titles[0]' [allCount]='allCount[0]' [count]='count[0]' [back]='back[0]' [color]='color[0]' ></app-widget>
+                </ng-template>  
+                </e-panel>
+                    <e-panel id="f-4" [sizeX]="1" [sizeY]="1" [row]="1" [col]="0">
+                        <ng-template #content >
+                            <app-widget  [title]='titles[1]' [allCount]='allCount[1]' [count]='count[1]' [back]='back[1]' [color]='color[1]'></app-widget>
+                        </ng-template>
+                    </e-panel>
+            
+                    <e-panel id="tag-cloud-chart3" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                        <ng-template #content>
+                            <tag-cloud-chart [id]='id[2]' ></tag-cloud-chart>
+                        </ng-template>
+                    </e-panel>
+                    <e-panel id="app-first-chart4" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                        <ng-template #content>
+                            <app-first-chart [id]='id[3]' ></app-first-chart>
+                        </ng-template>
+                    </e-panel>
+                </e-panels>
+            </ejs-dashboardlayout>
+            </div>
+      </ng-template>`, disabled: false},
         { value: 'Third Section', disabled: false}
       ];
     
@@ -60,7 +88,7 @@ export class ResizingComponent implements OnInit
         // tslint:disable-next-line:typedef
         // tslint:disable-next-line:use-lifecycle-interface
 
-        onExpand(index: number): void { 
+        onExpand(index: number): void{ 
               this.movies[index].disabled = !this.movies[index].disabled;
               console.log('disabled ' + index  + ' ' + this.movies[index].disabled);
         }

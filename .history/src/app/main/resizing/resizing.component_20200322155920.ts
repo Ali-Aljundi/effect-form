@@ -18,7 +18,8 @@ export class ResizingComponent implements OnInit
       panelOpenState = false;
       // tslint:disable-next-line:member-ordering
       movies = [
-        { value: 'First Section', disabled: false},
+        // tslint:disable-next-line:max-line-length
+        { value: '<div>Test</div>', disabled: false},
         { value: 'Second Section', disabled: false},
         { value: 'Third Section', disabled: false}
       ];
@@ -60,7 +61,7 @@ export class ResizingComponent implements OnInit
         // tslint:disable-next-line:typedef
         // tslint:disable-next-line:use-lifecycle-interface
 
-        onExpand(index: number): void { 
+        onExpand(index: number): void{ 
               this.movies[index].disabled = !this.movies[index].disabled;
               console.log('disabled ' + index  + ' ' + this.movies[index].disabled);
         }

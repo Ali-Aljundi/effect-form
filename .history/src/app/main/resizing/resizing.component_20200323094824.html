@@ -117,10 +117,9 @@
     </div>
 </div-->
 
-<div style="width: 95%;">
+<div style="width: 100%;">
     <div class="control-section" >
-        
-        <ejs-accordion expandMode='Multiple'>
+  <ejs-accordion expandMode='Multiple'>
           <e-accordionitems>
             <e-accordionitem>
         <ng-template #header>
@@ -142,12 +141,12 @@
                                 </ng-template>
                             </e-panel>
                     
-                            <e-panel id="chart1" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                            <e-panel id="tag-cloud-chart1" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
                                 <ng-template #content>
                                     <tag-cloud-chart [id]='id[0]'  ></tag-cloud-chart>
                                 </ng-template>
                             </e-panel>
-                            <e-panel id="chart2" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                            <e-panel id="app-first-chart2" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
                                 <ng-template #content>
                                     <app-first-chart [id]='id[1]'></app-first-chart>
                                 </ng-template>
@@ -158,13 +157,11 @@
                 </ng-template>
             </e-accordionitem>
           </e-accordionitems>
-        </ejs-accordion>
-   
-    </div>
+  </ejs-accordion>
+       </div>
        
-    <div class="control-section" >
-        
-         <ejs-accordion expandMode='Multiple'>
+       <div class="control-section" >
+  <ejs-accordion expandMode='Multiple'>
         <e-accordionitems>
             <e-accordionitem>
                 <ng-template #header>
@@ -185,12 +182,12 @@
                                   </ng-template>
                               </e-panel>
                       
-                              <e-panel id="chart3" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
+                              <e-panel id="tag-cloud-chart3" [sizeX]="3" [sizeY]="1" [row]="0" [col]="1">
                                   <ng-template #content>
                                       <tag-cloud-chart [id]='id[2]' ></tag-cloud-chart>
                                   </ng-template>
                               </e-panel>
-                              <e-panel id="chart4" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
+                              <e-panel id="app-first-chart4" [sizeX]="3" [sizeY]="1" [row]="2" [col]="1">
                                   <ng-template #content>
                                       <app-first-chart [id]='id[3]' ></app-first-chart>
                                   </ng-template>
@@ -201,12 +198,10 @@
                 </ng-template>
             </e-accordionitem>
         </e-accordionitems>
-        </ejs-accordion>
-    
-    </div>
-  <div class="control-section" >
-    
-        <ejs-accordion expandMode='Multiple'>
+  </ejs-accordion>
+        </div>
+        <div class="control-section" >
+  <ejs-accordion expandMode='Multiple'>
     <e-accordionitems>
         <e-accordionitem>
             <ng-template #header>
@@ -243,8 +238,7 @@
             </ng-template>
         </e-accordionitem>
     </e-accordionitems>
-        </ejs-accordion>
-    
+  </ejs-accordion>
   </div>
 </div>
 
