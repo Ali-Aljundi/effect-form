@@ -68,10 +68,16 @@
         </ngx-datatable>
   
 
-<div style="text-align: center; margin-top: 10px;"><button mat-raised-button  class="primary mt-16 mt-sm-0" (click)="postStatistics()">Statistic</button></div>
+<div style="text-align: center; margin-top: 10px;">
+    <button mat-raised-button  class="primary mt-16 mt-sm-0" (click)="postStatistics() ">Statistic</button>
+</div>
 
 
     </div>
  
 </div>
+
+<div *ngIf="showGraph==true">
+    <app-clusterd-column-chart [nowDATA]='statisticDATA.now' [afterDATA]='statisticDATA.after' [beforeDATA]='statisticDATA.before' ></app-clusterd-column-chart>
+   </div>
 

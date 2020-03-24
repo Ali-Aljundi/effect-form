@@ -3,7 +3,8 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { takeUntil } from 'rxjs/operators';
 import { StatisticsService } from 'Services/statistics.service';
-
+import {statistic} from '../../../Model/statistics';
+import {StatisticAPIserviceService} from '../../../Services/statisticsAPI/statistic-apiservice.service';
 
 @Component({
   selector: 'app-table',
@@ -11,7 +12,8 @@ import { StatisticsService } from 'Services/statistics.service';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-
+  statisticDATA=new statistic();
+  public showGraph=false
   rows: any[];
   selected = [];
   id: number;
@@ -29,7 +31,8 @@ export class TableComponent implements OnInit {
    */
   constructor(
       private _httpClient: HttpClient,
-      private statisticService: StatisticsService
+      private statisticService: StatisticsService ,
+      private statisticAPIservice:StatisticAPIserviceService
   )
   {
       // Set the defaults
@@ -76,11 +79,26 @@ export class TableComponent implements OnInit {
   }
   postStatistics(): void{
     console.log(this.id);
+    this.callAPI(this.id);
   }
   
   // tslint:disable-next-line:typedef
   onSelect(row) {
     this.id = this.selected[0].id;
 
+  }
+
+  callAPI(id){
+    this.statisticAPIservice.getStatistic(id).subscribe(data=>{this.statisticDATA=
+    {
+      now:(data as any).now,
+      after:(data as any).after,
+      before:(data as any).before
+    }
+    console.log(this.statisticDATA);
+    this.showGraph=true;
+    }
+      
+      )
   }
 }

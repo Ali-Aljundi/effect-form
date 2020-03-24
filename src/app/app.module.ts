@@ -19,6 +19,8 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import {LoginComponent} from './login/login.component';
 import {LoginModule} from './login/login.module';
+import { VariableRadiosPieChartComponent } from './Component/variable-radios-pie-chart/variable-radios-pie-chart.component';
+
 
 
 
@@ -47,6 +49,11 @@ const appRoutes: Routes = [
         loadChildren: './main/maintenance/maintenance.module#MaintenanceModule' 
     },
     {
+        path:'statistics',
+        loadChildren:'./main/statistics/statistics.module#StatisticsModule'
+    },
+
+    {
         path: 'errors',
         loadChildren: './main/errors/error404/error404.module#Error404Module' 
     },
@@ -68,7 +75,8 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        VariableRadiosPieChartComponent
     ],
     imports     : [
         BrowserModule,

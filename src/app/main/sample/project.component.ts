@@ -7,6 +7,8 @@ import { PostDataService } from 'Services/post-data.service';
 import {post_info} from 'Model/post_info';
 import {post_response} from 'Model/post_response';
 import { Router } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector     : 'project-dashboard',
@@ -16,12 +18,22 @@ import { Router } from '@angular/router';
 
 export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
-    @ViewChild('element', {static: true}) element;
+    color="accent";
+    text='refresh';
+    turn:boolean;
+    size='120';
+
+    @ViewChild('element',{static: true}) element;
     form: FormGroup;
-    account = new Account();
-    postResponse: post_response;
-    postdata = new post_info();
-    
+    account=new Account();
+    postResponse:post_response;
+    postdata=new post_info();
+    urlList:any = [];
+    public urls:any[]=[];
+    contentList:any = [];
+    public contents:any[]=[];
+    classURL;
+    classContent;
     refreshSpinner = false;
     ApplySpinner = false;
     toastColor;
@@ -69,13 +81,13 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-             urls: [[''], [Validators.required, Validators.pattern('https?:\/\/.+')]],
-             // Validators.pattern('http:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()\+;]{1,6}')
+             urls: ['', [Validators.required]],
+             //,Validators.pattern('https?://.+')
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
             contents      : [ {
-                value   : '',
-                disabled: true
+                value   : [''],
+                disabled:true
             }
         ] 
         });
@@ -118,27 +130,29 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 
     // tslint:disable-next-line:typedef
     SendInfo()
-    {
-        const stringArray = (document.getElementById('urls') as HTMLInputElement).value.split(';');
-        console.log(stringArray);
-        this.form.value.urls = stringArray;
-        let stringArrayContnent;
-        if ((document.getElementById('contents') as HTMLInputElement) != null) {
-        stringArrayContnent = (document.getElementById('contents') as HTMLInputElement).value.split(';');
+    { 
+        if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' )
+        {
+            this.form.controls.contents.enable(); 
         }
-        else {
-            stringArrayContnent = [''];
+        else
+        {
+             this.form.controls.contents.disable(); 
         }
-        console.log(stringArrayContnent);
-        this.form.value.contents = stringArrayContnent;
 
-        this.postdata = this.form.value;
+       this.postdata.url_type=this.form.value.url_type;
+       //this.postdata.contents=this.form.value.contents;
+       this.postdata.count=this.form.value.count;
+       this.postdata.effectType=this.form.value.effectType;
+       this.postdata.registeredAccountType=this.form.value.registerdAccountType;
+       // this.postdata=this.form.value;
         console.log(this.postdata);
         this.postDataService.postdata(this.postdata)
         .subscribe(
-            data => {
-                this.postResponse = data;
-                this.message = this.postResponse.message;
+            data=>
+            {
+                this.postResponse=data;
+                this.message=this.postResponse.message;
                 this.toastShow();
             },
             err => { console.error(err); this.router.navigate(['/maintenance']) ; }
@@ -147,41 +161,95 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 
     // tslint:disable-next-line:typedef
     toastShow()
-    { const success = 'All effects created successfully.';
-      const warning = 'No enough accounts to create this effect.';
-      const index1 = success.localeCompare(this.message);
-      const index2 = warning.localeCompare(this.message);
-      if (index1 === 0) {
-            this.toastColor = 'success';
-        } else {if (index2 === 0)
-           {this.toastColor = 'warning'; }
-           else{this.toastColor = 'info'; }
+    {
+        var success="All effects created successfully.";
+        var warning='No enough accounts to create this effect.';
+        var index1 = success.localeCompare(this.message);
+        var index2 = warning.localeCompare(this.message);
+        if (index1==0)
+        {
+            this.toastColor="success";
+        } else {if(index2==0)
+           {this.toastColor="warning"; }
+           else{this.toastColor="info";}
         }
-      setTimeout(
+
+    setTimeout(
       () => {
+        this.element.timeOut=1000;
           this.element.show();
-          this.refreshSpinner = false;
-          this.ApplySpinner = false;
-      }, 500);
+          this.turn=false;
+          this.refreshSpinner=false
+          this.ApplySpinner=false;
+      }, 600);
     }
 
-    enableContent(): void{ 
+    enableContent():void{ 
         this.form.controls.contents.enable();
     }
 
-    testEffectType(): void{
-          if (this.form.value.effectType === 'comment') {
-            this.form.controls.content.enable(); 
-          }else{
-            this.form.controls.content.disable(); 
-          }
-    }
 
-    // tslint:disable-next-line:typedef
-    refresh(){
+    refreshWidget(){
         this.getInfo();
-        this.message = 'Refresh Widget Value';
+        this.turn=true;
+        this.message="Refresh Widget Value";
         this.toastShow();
     }
-    
+
+
+    addURLTextarea(){     
+        this.form.addControl(('URL'+ (this.urlList.length + 1)), this._formBuilder.control(''))
+        this.urlList.push('url'+ (this.urlList.length + 1));
+        this.classURL="Groub"
+       
+    }
+
+    removeURLTextArea(index){
+        this.urlList.splice(index, 1);
+        this.urls.splice(index+1,1);
+        this.urlList.length -1;
+        this.form.removeControl('URL'+(index+1));
+        console.log(this.urlList.length)
+        if (this.urlList.length==0) {
+            this.classURL="";
+        }
+    }
+
+    JoinUrls(){
+       this.urls[0]=this.form.value.urls;
+        for (let index = 0; index < this.urlList.length; index++) {
+         this.urls[index+1]=(this.form.get('URL'+(index+1)).value)
+      }
+      this.form.value.urls=this.urls;
+      this.postdata.urls=this.urls
+    }
+
+    addContentTextarea(){     
+        this.form.addControl(('Content'+ (this.contentList.length + 1)), this._formBuilder.control(''))
+        this.contentList.push('content'+ (this.contentList.length + 1));
+       this.classContent="Groub";
+    }
+
+    removeContentTextArea(index){
+        this.contentList.splice(index, 1);
+        this.contents.splice(index+1,1);
+        this.contentList.length -1;
+        this.form.removeControl('Content'+(index+1));
+        console.log(this.contentList.length)
+        if (this.contentList.length==0) {
+            this.classContent="";
+        }
+    }
+
+    JoinContents(){
+        this.contents[0]=this.form.value.contents;
+         for (let index = 0; index < this.contentList.length; index++) {
+          this.contents[index+1]=(this.form.get('Content'+(index+1)).value)
+       }
+        
+       this.form.value.contents=this.contents;
+       if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' ){
+       this.postdata.contents=this.contents;
+       }
+     }
 }
