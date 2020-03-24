@@ -13,15 +13,13 @@
     </div>
 
     <!-- / HEADER -->
-    <mat-card *ngIf="isLoading" 
-    style="display: flex; justify-content: center; align-items: center">
-        <mat-progress-spinner 
-         color="primary" 
-         mode="indeterminate">
-        </mat-progress-spinner>
-    </mat-card>
+   
     <!-- CONTENT -->
-    <div class="content p-24" *ngIf="isContnetShowed">
+    <div class="content p-24">
+
+        <p class="mb-32">
+            <b></b> 
+        </p>
 
         <ngx-datatable
             class="material"
@@ -59,16 +57,14 @@
                 </ng-template-->
 
             </ngx-datatable-column>
-           <ngx-datatable-column name="base name" prop="base_name"></ngx-datatable-column>
-           <ngx-datatable-column name="source name" prop="source_name"></ngx-datatable-column>
-           <ngx-datatable-column name="base Url Classifications" prop="baseUrlClassifications"></ngx-datatable-column>
+           <ngx-datatable-column name="base_name" prop="base_name"></ngx-datatable-column>
+           <ngx-datatable-column name="source_name" prop="source_name"></ngx-datatable-column>
+           <ngx-datatable-column name="baseUrlClassifications" prop="baseUrlClassifications"></ngx-datatable-column>
             <ngx-datatable-column name="content" prop="content"></ngx-datatable-column>
 
 
         </ngx-datatable>
-  
-
-<div style="text-align: center; margin-top: 10px;"><button mat-raised-button  class="primary mt-16 mt-sm-0" (click)="postStatistics()">Statistic</button></div>
+<div style="text-align: center; margin-top: 10px;"><button mat-raised-button  class="primary mt-16 mt-sm-0" >Statistic</button></div>
 
 
     </div>

@@ -14,11 +14,9 @@ export class TableComponent implements OnInit {
 
   rows: any[];
   selected = [];
-  id: number;
   loadingIndicator: boolean;
   reorderable: boolean;
-  isLoading = false;
-  isContnetShowed = false;
+  isLoading = true;
   // Private
   private _unsubscribeAll: Subject<any>;
 
@@ -64,8 +62,7 @@ export class TableComponent implements OnInit {
   }
 
   fillTable(): void  {
-    this.isContnetShowed = true;
-    this.isLoading = true;
+
     this.statisticService.getStatistics((document.getElementById('search') as HTMLInputElement).value)
     .pipe(takeUntil(this._unsubscribeAll))
     .subscribe((statistisc: any) => {
@@ -75,12 +72,11 @@ export class TableComponent implements OnInit {
     });
   }
   postStatistics(): void{
-    console.log(this.id);
+  console.log((document.getElementById('id') as HTMLInputElement).value);
   }
   
   // tslint:disable-next-line:typedef
   onSelect(row) {
-    this.id = this.selected[0].id;
-
+    console.log(this.selected[0].id);
   }
 }

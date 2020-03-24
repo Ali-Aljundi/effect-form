@@ -80,7 +80,6 @@ export class TableComponent implements OnInit {
   
   // tslint:disable-next-line:typedef
   onSelect(row) {
-    this.id = this.selected[0].id;
-
+    this.id = row[0].id;
   }
 }
