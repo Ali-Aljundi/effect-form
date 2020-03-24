@@ -2,10 +2,10 @@
     <div class="cont" fxFlex="100" fxLayout="row wrap " >
         <div class="first">
             <div fxLayout="column">
-                
-                   <!--<button class="ref" mat-raised-button color="accent" [class.spinner]="refreshSpinner" [disabled]="refreshSpinner" (click)="refreshSpinner = true" (click)="refreshWidget()" >Refresh</button>-->
-                    <app-spinner-button  [color]='color' [turn]='turn' [text]='text' [size]='size' (click)='refreshWidget()'> </app-spinner-button>
-               
+                <div class="ref-button">
+                   <button class="ref" mat-raised-button color="accent" [class.spinner]="refreshSpinner" [disabled]="refreshSpinner" (click)="refreshSpinner = true" (click)="refreshWidget()" >Refresh</button>
+                    <!--<app-spinner-button  [color]='color' [turn]='turn' [text]='text' [size]='size' (click)='refreshWidget()'> </app-spinner-button>-->
+                </div>
                 <fuse-widget  fxFlex="100">
                     <div class="fuse-widget-front h-auto" >
                             <div class="pl-8 pr-8 py-16 h-54 font-size-20 red-fg" fxLayout="row" fxLayoutAlign="center">

@@ -23,6 +23,13 @@ export const navigation: FuseNavigation[] = [
                 url      : '/form',
             },
             {
+                id       : 'statistics',
+                title    : 'Statistics',
+                type     : 'item',
+                icon     : 'format_align_center',
+                url      : '/statistics',
+            },
+            {
                 id       : 'Accordion',
                 title    : 'Accordion',
                 translate: 'NAV.SAMPLE.TITLE',
@@ -30,6 +37,7 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'format_align_center',
                 url      : '/Accordion',
             },
+
 
         ]
     }
