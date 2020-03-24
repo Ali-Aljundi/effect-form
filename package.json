@@ -45,6 +45,7 @@
         "@swimlane/ngx-charts": "12.0.1",
         "@swimlane/ngx-datatable": "15.0.2",
         "@swimlane/ngx-dnd": "8.0.0",
+        "@syncfusion/ej2-angular-buttons": "17.4.51",
         "@syncfusion/ej2-angular-layouts": "17.4.51",
         "@syncfusion/ej2-angular-navigations": "17.4.55",
         "@syncfusion/ej2-angular-notifications": "17.4.51",

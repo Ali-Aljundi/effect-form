@@ -1,0 +1,45 @@
+@import "src/@fuse/scss/fuse";
+
+$background: map-get($theme, background);
+$foreground: map-get($theme, foreground);
+
+:host {
+
+    .content{
+        max-width: 100%;
+    }
+
+    .header{
+        @include media-breakpoint('xs') {
+            padding: 16px;
+        }
+    .search-wrapper {
+        border-radius: 24px;
+        max-width: 640px;
+        overflow: hidden;
+        @include mat-elevation(1);
+
+        .search {
+            width: 100%;
+            height: 48px;
+            line-height: 48px;
+            padding: 0 18px;
+            
+            mat-icon {
+                color: map-get($foreground, secondary-text);
+            }
+
+            input {
+                height: 48px;
+                min-height: 48px;
+                max-height: 48px;
+                padding: 0 16px;
+                border: none;
+                outline: none;
+                background: map-get($background, card);
+                color: map-get($foreground, text);
+            }
+        }
+      }
+    }
+}
