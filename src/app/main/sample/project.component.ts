@@ -18,11 +18,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
-    color="accent";
-    text='refresh';
-    turn:boolean;
-    size='120';
-
     @ViewChild('element',{static: true}) element;
     form: FormGroup;
     account=new Account();
@@ -37,6 +32,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     refreshSpinner = false;
     ApplySpinner = false;
     toastColor;
+    disableURLbutton;
     // Public
     public position = { X: 'Right' };
     public message: string;
@@ -81,14 +77,14 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-             urls: ['', [Validators.required]],
+             urls: [null, [Validators.required]],
              //,Validators.pattern('https?://.+')
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
             contents      : [ {
-                value   : [''],
+                value   : null,
                 disabled:true
-            }
+            },Validators.required
         ] 
         });
         this.element.hide('All');
@@ -176,9 +172,10 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 
     setTimeout(
       () => {
+          
         this.element.timeOut=1000;
           this.element.show();
-          this.turn=false;
+
           this.refreshSpinner=false
           this.ApplySpinner=false;
       }, 600);
@@ -191,23 +188,31 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
 
     refreshWidget(){
         this.getInfo();
-        this.turn=true;
         this.message="Refresh Widget Value";
         this.toastShow();
+        
     }
 
 
-    addURLTextarea(){     
-        this.form.addControl(('URL'+ (this.urlList.length + 1)), this._formBuilder.control(''))
+    addURLTextarea(){  
+        if(this.urlList.length==0)
+        {
+             this.form.addControl(('URL'+ (this.urlList.length + 1)), this._formBuilder.control(null))
         this.urlList.push('url'+ (this.urlList.length + 1));
-        this.classURL="Groub"
+        this.classURL="Groub"}
+        else{
+        if(this.form.get('URL'+(this.urlList.length)).value!=null){
+
+        this.form.addControl(('URL'+ (this.urlList.length + 1)), this._formBuilder.control(null))
+        this.urlList.push('url'+ (this.urlList.length + 1));
+        this.classURL="Groub"}}
        
     }
 
     removeURLTextArea(index){
         this.urlList.splice(index, 1);
         this.urls.splice(index+1,1);
-        this.urlList.length -1;
+      //  this.urlList.length -1;
         this.form.removeControl('URL'+(index+1));
         console.log(this.urlList.length)
         if (this.urlList.length==0) {
@@ -224,13 +229,24 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
       this.postdata.urls=this.urls
     }
 
-    addContentTextarea(){     
-        this.form.addControl(('Content'+ (this.contentList.length + 1)), this._formBuilder.control(''))
+    addContentTextarea(){ 
+
+        if(this.contentList.length==0){ 
+           
+        this.form.addControl(('Content'+ (this.contentList.length + 1)), this._formBuilder.control(null))
         this.contentList.push('content'+ (this.contentList.length + 1));
-       this.classContent="Groub";
-    }
+       this.classContent="Groub";}
+       else{
+        if(this.form.get('Content'+(this.contentList.length)).value!=null){ 
+            this.form.addControl(('Content'+ (this.contentList.length + 1)), this._formBuilder.control(null))
+            this.contentList.push('content'+ (this.contentList.length + 1));
+           this.classContent="Groub";  
+       }
+    }console.log(this.form.value) 
+}
 
     removeContentTextArea(index){
+        
         this.contentList.splice(index, 1);
         this.contents.splice(index+1,1);
         this.contentList.length -1;
@@ -238,7 +254,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         console.log(this.contentList.length)
         if (this.contentList.length==0) {
             this.classContent="";
-        }
+        }console.log(this.form.value)
     }
 
     JoinContents(){

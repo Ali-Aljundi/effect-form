@@ -94,14 +94,14 @@
                             <div class="{{classURL}}" fxLayout="column" >
                         
                             <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
-                                <mat-form-field id="firstone" appearance="outline" fxFlex="100" >
+                                <mat-form-field class="firstONE"   appearance="outline" fxFlex="100" >
                                     <mat-label class="h2">URL</mat-label>
-                                    <mat-icon matSuffix class="addText"  (click)="addURLTextarea()"  >add_circle</mat-icon>   
+                                    <button [disabled]='form.controls.urls.invalid'  matSuffix class="buttontrans" (click)="addURLTextarea(url_index)" ><mat-icon matSuffix class="addText">add_circle</mat-icon></button>   
                                     <textarea  matInput formControlName="urls" class="urls" ></textarea>                                                              
                                 </mat-form-field>                                
                             </div>
                             <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngFor="let url of urlList; let url_index= index">
-                                <mat-form-field  appearance="outline" fxFlex="100" >
+                                <mat-form-field   appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL-{{url_index+2}}</mat-label>
                                     <textarea matInput formControlName="URL{{url_index+1}}" class="urls"  required name="{{url}}"></textarea>
                                     <mat-icon matSuffix class="deleteText" (click)="removeURLTextArea(url_index)">delete</mat-icon>
@@ -127,10 +127,10 @@
                             <div class="{{classContent}}" fxLayout="column" *ngIf="form.value.effectType == 'comment' || form.value.effectType == 'share'">
                             <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngIf="form.value.effectType == 'comment' || form.value.effectType == 'share'">
                                 {{enableContent()}}
-                                <mat-form-field  id="firstone"  appearance="outline" fxFlex="100"  >
+                                <mat-form-field  class="firstONE"  appearance="outline" fxFlex="100"  >
                                     <mat-label class="h2">Content</mat-label>
                                     <textarea  matInput  formControlName="contents" class="urls"></textarea>
-                                    <mat-icon matSuffix class="addText"  (click)="addContentTextarea()"  >add_circle</mat-icon>  
+                                    <button  [disabled]='form.controls.contents.invalid' matSuffix class="buttontrans"  (click)="addContentTextarea()" ><mat-icon matSuffix class="addText" >add_circle</mat-icon></button>  
                                     <mat-error>Content is required!</mat-error>
                                 </mat-form-field>
                             </div>
@@ -144,7 +144,7 @@
                             </div>
                         </div>
 
-                            <button class="mt-20"  mat-raised-button color="accent" (click)="SendInfo()" [class.spinner]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true" (click)="JoinUrls()" (click)=" JoinContents()"  >Apply Effect</button>
+                            <button class="mt-20" [disabled]='form.invalid'  mat-raised-button color="accent" (click)="SendInfo()" [class.spinner]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true" (click)="JoinUrls()" (click)=" JoinContents()"  >Apply Effect</button>
                             
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-{{toastColor}}" >
                                 <ng-template #title>

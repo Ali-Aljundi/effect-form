@@ -7,7 +7,7 @@
         //margin-left: auto !important;
       // margin-right: auto !important;
         form {
-            padding: 25px  !important;
+            padding: 12px  !important;
             border-radius: 10px;
             width: 100% !important;
             min-width: 350px !important;
@@ -29,8 +29,10 @@
     }
 }
 ::ng-deep.mat-form-field-wrapper{
-    padding-bottom: 0px !important;
-    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  //  padding-top: 14px !important;
 }
 .colo{
     background-color:rgb(30, 29, 37) ;
@@ -154,8 +156,14 @@
     border-color: rgba(0, 0, 0, 0.30);
     border-radius: 10px;
     }
-    #firstone{
-       margin-top: -15px !important;
-    }
+.firstONE{
+  padding-top: 10px !important;
+}
+.buttontrans{
+  background-color: transparent;
+ border-style: none !important;
+ padding: 0px !important;
+}
+
 
  
