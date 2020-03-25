@@ -32,7 +32,7 @@ const appRoutes: Routes = [
         loadChildren : './main/table/table.module#TableModule'
     },
     {
-        path      : 'form',
+        path      : 'EffectForm',
         loadChildren : './main/sample/project.module#ProjectDashboardModule'
     },
    
@@ -76,7 +76,7 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        VariableRadiosPieChartComponent
+       // VariableRadiosPieChartComponent
     ],
     imports     : [
         BrowserModule,

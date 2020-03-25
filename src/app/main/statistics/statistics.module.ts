@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatisticsComponent } from './statistics.component';
-import { ClusterdColumnChartComponent } from '../../Component/clusterd-column-chart/clusterd-column-chart.component';
+import { VariableRadiosPieChartComponent } from '../../Component/variable-radios-pie-chart/variable-radios-pie-chart.component';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes  = [
@@ -14,6 +14,7 @@ const routes: Routes  = [
 @NgModule({
   declarations: [
     StatisticsComponent,
+    VariableRadiosPieChartComponent
     //ClusterdColumnChartComponent
   ],
   imports: [

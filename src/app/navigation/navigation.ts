@@ -16,11 +16,11 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'form',
-                title    : 'Form',
+                title    : 'Effect Form',
                 translate: 'NAV.SAMPLE.TITLE',
                 type     : 'item',
                 icon     : 'format_align_center',
-                url      : '/form',
+                url      : '/EffectForm',
             },
             {
                 id       : 'statistics',

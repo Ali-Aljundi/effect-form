@@ -78,6 +78,7 @@ export class TableComponent implements OnInit {
     });
   }
   postStatistics(): void{
+    this.showGraph=false;
     console.log(this.id);
     this.callAPI(this.id);
   }
