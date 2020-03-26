@@ -22,6 +22,7 @@ export class TagCloudComponent{
        
       const chart1 = am4core.create( this.id , am4plugins_wordCloud.WordCloud);
       chart1.fontFamily = 'Courier New';
+      chart1.logo.height=-15;
       const series = chart1.series.push(new am4plugins_wordCloud.WordCloudSeries());
       series.randomness = 0.1;
       series.rotationThreshold = 0.5;

@@ -21,7 +21,7 @@ export class FirstChartComponent{
     this.zone.runOutsideAngular(() => {
       
       const chart = am4core.create(this.id, am4charts.XYChart);
-
+      chart.logo.height=-15;
       chart.paddingRight = 20;
 
       const data = [];

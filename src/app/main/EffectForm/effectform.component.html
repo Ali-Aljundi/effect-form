@@ -3,7 +3,7 @@
         <div class="first">
             <div fxLayout="column">
                 <div class="ref-button">
-                   <button class="ref" mat-raised-button color="accent" [class.spinner]="refreshSpinner" [disabled]="refreshSpinner" (click)="refreshSpinner = true" (click)="refreshWidget()" >Refresh</button>
+                   <button class="ref" mat-raised-button color="accent" [class.spinner1]="refreshSpinner" [disabled]="refreshSpinner" (click)="refreshSpinner = true" (click)="refreshWidget()" >Refresh</button>
                     <!--<app-spinner-button  [color]='color' [turn]='turn' [text]='text' [size]='size' (click)='refreshWidget()'> </app-spinner-button>-->
                 </div>
                 <fuse-widget  fxFlex="100">
@@ -80,7 +80,7 @@
                                 </mat-form-field>
                             </div>
 
-                            <mat-form-field class="mb-16" appearance="outline" fxFlex="100">
+                            <mat-form-field class="mb-8" appearance="outline" fxFlex="100">
                                 <mat-label  class="h2" >Effect Type</mat-label>
                                 <mat-select formControlName="effectType" >
                                     <mat-option *ngFor="let item of account.fb_effect_types" [(value)]="item" >
@@ -111,7 +111,7 @@
                             </div>
                            
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
-                                <mat-form-field class="mb-16" appearance="outline" fxFlex="100" >
+                                <mat-form-field class="mb-8" appearance="outline" fxFlex="100" >
                                     <mat-label  class="h2">URL Type</mat-label>
                                     <mat-select formControlName="url_type" required>
                                         <mat-option *ngFor="let item of account.fb_url_types" [value]="item">
@@ -144,7 +144,7 @@
                             </div>
                         </div>
 
-                            <button class="mt-20" [disabled]='form.invalid'  mat-raised-button color="accent" (click)="SendInfo()" [class.spinner]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true" (click)="JoinUrls()" (click)=" JoinContents()"  >Apply Effect</button>
+                            <button class="mt-20" [disabled]='form.invalid'  mat-raised-button color="accent" (click)="SendInfo()" [class.spinner2]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true" (click)="JoinUrls()" (click)=" JoinContents()"  >Apply Effect</button>
                             
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-{{toastColor}}" >
                                 <ng-template #title>
