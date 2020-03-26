@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ClusterdColumnChartComponent } from '../../Component/clusterd-column-chart/clusterd-column-chart.component';
+//import { ClusterdColumnChartComponent } from '../../Component/clusterd-column-chart/clusterd-column-chart.component';
 
 const routes: Routes  = [
   {
@@ -22,7 +22,7 @@ const routes: Routes  = [
 @NgModule({
   declarations: [
     TableComponent,
-    ClusterdColumnChartComponent
+    //ClusterdColumnChartComponent
   ],
   imports: [
     RouterModule.forChild(routes),

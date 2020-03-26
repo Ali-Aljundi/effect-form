@@ -12,20 +12,20 @@ export class Account{
     // tslint:disable-next-line:variable-name
     fb_accounts_info: fb_accounts_infos[] = [
         {
-            type: '',
+            type: 'mobile',
             total_count: 0,
             active_count: 0
         },
         {
-            type: '',
+            type: 'email',
             total_count: 0,
             active_count: 0
         }
     ];
     // tslint:disable-next-line:variable-name
-    fb_account_types: any[] =['0'];
+    fb_account_types: any[] =['mobile','email'];
     // tslint:disable-next-line:variable-name
-    fb_effect_types: any[] =['0'];
+    fb_effect_types: any[] =['comment','share','like','haha'];
     // tslint:disable-next-line:variable-name
-    fb_url_types: any[] = ['0'];
+    fb_url_types: any[] = ['page','group'];
     }

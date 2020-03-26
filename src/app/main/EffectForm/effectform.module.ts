@@ -12,23 +12,23 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseSidebarModule } from '@fuse/components';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
-import { ProjectDashboardComponent } from 'app/main/sample/project.component';
+import { effectformComponent } from 'app/main/EffectForm/effectform.component';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
 
 import { ToastModule } from '@syncfusion/ej2-angular-notifications';
-import {SpinnerButtonComponent} from '../../Component/spinner-button/spinner-button.component'
+//import {SpinnerButtonComponent} from '../../Component/spinner-button/spinner-button.component'
 const routes: Routes = [
     {
         path     : '**',
-        component: ProjectDashboardComponent,
+        component: effectformComponent,
     }
 ];
 
 @NgModule({
     declarations: [
-        ProjectDashboardComponent,
-        SpinnerButtonComponent
+        effectformComponent,
+        //SpinnerButtonComponent
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -53,6 +53,6 @@ const routes: Routes = [
         FuseSharedModule,
     ],
 })
-export class ProjectDashboardModule
+export class EffectFormModule
 {
 }

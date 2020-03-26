@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import {LoginComponent} from './login/login.component';
 import {LoginModule} from './login/login.module';
-import { VariableRadiosPieChartComponent } from './Component/variable-radios-pie-chart/variable-radios-pie-chart.component';
+//import { VariableRadiosPieChartComponent } from './Component/variable-radios-pie-chart/variable-radios-pie-chart.component';
 
 
 
@@ -33,13 +33,9 @@ const appRoutes: Routes = [
     },
     {
         path      : 'EffectForm',
-        loadChildren : './main/sample/project.module#ProjectDashboardModule'
+        loadChildren : './main/EffectForm/effectform.module#EffectFormModule'
     },
    
-    {
-        path      : 'dashboard',
-        loadChildren : './main/resizing/resizing.module#ResizingModule'
-    },
     {
         path      : 'accordion',
         loadChildren : './main/accordion/accordion.module#AccordionModule'

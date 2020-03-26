@@ -7,16 +7,17 @@ import { PostDataService } from 'Services/post-data.service';
 import {post_info} from 'Model/post_info';
 import {post_response} from 'Model/post_response';
 import { Router } from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {addTextarea} from './function/addfield';
+import {removeTextArea} from './function/removefield';
+import {JoinField} from './function/mergefield'
 
 @Component({
-    selector     : 'project-dashboard',
-    templateUrl  : './project.component.html',
-    styleUrls    : ['./project.component.scss'],
+    selector     : 'effectform',
+    templateUrl  : './effectform.component.html',
+    styleUrls    : ['./effectform.component.scss'],
 })
 
-export class ProjectDashboardComponent implements OnInit, OnDestroy
+export class effectformComponent implements OnInit, OnDestroy
 {
     @ViewChild('element',{static: true}) element;
     form: FormGroup;
@@ -49,7 +50,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         private _formBuilder: FormBuilder,
         private _FbAccountsInfosService: FbAccountsInfosService,
         private postDataService: PostDataService,
-        private router: Router
+        private router: Router,
     )
     {
         // Set the private defaults
@@ -119,8 +120,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                     fb_url_types: (data as any ).fb_url_types,    
                 }; 
             },
-            err => { console.error(err); this.router.navigate(['/maintenance']) ;
-             }
+           // err => { console.error(err); this.router.navigate(['/maintenance']) ;}
                 );
       }
 
@@ -151,7 +151,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
                 this.message=this.postResponse.message;
                 this.toastShow();
             },
-            err => { console.error(err); this.router.navigate(['/maintenance']) ; }
+           // err => { console.error(err); this.router.navigate(['/maintenance']) ; }
         );  
     }
 
@@ -193,79 +193,41 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         
     }
 
+      // 
 
-    addURLTextarea(){  
-        if(this.urlList.length==0)
-        {
-             this.form.addControl(('URL'+ (this.urlList.length + 1)), this._formBuilder.control(null))
-        this.urlList.push('url'+ (this.urlList.length + 1));
-        this.classURL="Groub"}
-        else{
-        if(this.form.get('URL'+(this.urlList.length)).value!=null){
-
-        this.form.addControl(('URL'+ (this.urlList.length + 1)), this._formBuilder.control(null))
-        this.urlList.push('url'+ (this.urlList.length + 1));
-        this.classURL="Groub"}}
-       
+    addURLTextarea(){ 
+        [this.urlList,this.form]=addTextarea(this.urlList,this.form,this._formBuilder,"URL"); 
+      this.classURL='Groub';
+     // console.log(this.urlList)
+     // console.log(this.form)   
     }
 
     removeURLTextArea(index){
-        this.urlList.splice(index, 1);
-        this.urls.splice(index+1,1);
-      //  this.urlList.length -1;
-        this.form.removeControl('URL'+(index+1));
-        console.log(this.urlList.length)
-        if (this.urlList.length==0) {
-            this.classURL="";
-        }
+    [this.urlList,this.form,this.classURL]=removeTextArea(this.form,this.urlList,this.classURL,index,this.urls);
+   // console.log(this.urlList)
+   // console.log(this.form)
     }
 
     JoinUrls(){
-       this.urls[0]=this.form.value.urls;
-        for (let index = 0; index < this.urlList.length; index++) {
-         this.urls[index+1]=(this.form.get('URL'+(index+1)).value)
-      }
-      this.form.value.urls=this.urls;
-      this.postdata.urls=this.urls
+        [this.form,this.postdata.urls]=JoinField(this.urls,this.form,this.urlList,this.postdata.urls,this.form.value.urls);
+        //console.log(this.postdata)
     }
 
     addContentTextarea(){ 
-
-        if(this.contentList.length==0){ 
-           
-        this.form.addControl(('Content'+ (this.contentList.length + 1)), this._formBuilder.control(null))
-        this.contentList.push('content'+ (this.contentList.length + 1));
-       this.classContent="Groub";}
-       else{
-        if(this.form.get('Content'+(this.contentList.length)).value!=null){ 
-            this.form.addControl(('Content'+ (this.contentList.length + 1)), this._formBuilder.control(null))
-            this.contentList.push('content'+ (this.contentList.length + 1));
-           this.classContent="Groub";  
-       }
-    }console.log(this.form.value) 
-}
+        [this.contentList,this.form]=addTextarea(this.contentList,this.form,this._formBuilder,"Content"); 
+      this.classURL='Groub';
+     // console.log(this.urlList);
+     // console.log(this.form);     
+    } 
 
     removeContentTextArea(index){
-        
-        this.contentList.splice(index, 1);
-        this.contents.splice(index+1,1);
-        this.contentList.length -1;
-        this.form.removeControl('Content'+(index+1));
-        console.log(this.contentList.length)
-        if (this.contentList.length==0) {
-            this.classContent="";
-        }console.log(this.form.value)
+        [this.contentList,this.form,this.classContent]=removeTextArea(this.form,this.contentList,this.classContent,index,this.contents);
+      //  console.log(this.urlList)
+      //  console.log(this.form)
     }
 
     JoinContents(){
-        this.contents[0]=this.form.value.contents;
-         for (let index = 0; index < this.contentList.length; index++) {
-          this.contents[index+1]=(this.form.get('Content'+(index+1)).value)
-       }
-        
-       this.form.value.contents=this.contents;
-       if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' ){
-       this.postdata.contents=this.contents;
-       }
+        [this.form,this.postdata.contents]=JoinField(this.contents,this.form,this.contentList,this.postdata.contents,this.form.value.contents);
+        //console.log(this.postdata)
      }
 }

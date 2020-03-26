@@ -7,13 +7,7 @@ export const navigation: FuseNavigation[] = [
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
         children : [
-            {
-                id       : 'resizing',
-                title    : 'Dashboard',
-                type     : 'item',
-                icon     : 'dashboard',
-                url      : '/dashboard',
-            },
+
             {
                 id       : 'form',
                 title    : 'Effect Form',
