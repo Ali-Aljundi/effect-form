@@ -32,8 +32,8 @@ const appRoutes: Routes = [
         loadChildren : './main/table/table.module#TableModule'
     },
     {
-        path      : 'EffectForm',
-        loadChildren : './main/sample/project.module#ProjectDashboardModule'
+        path      : 'effect_form',
+        loadChildren : './main/EffectForm/effectform.module#EffectFormModule'
     },
    
     {

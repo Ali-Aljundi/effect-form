@@ -15,12 +15,12 @@ export const navigation: FuseNavigation[] = [
                 url      : '/dashboard',
             },
             {
-                id       : 'form',
+                id       : 'effect_form',
                 title    : 'Effect Form',
                 translate: 'NAV.SAMPLE.TITLE',
                 type     : 'item',
                 icon     : 'format_align_center',
-                url      : '/EffectForm',
+                url      : '/effect_form',
             },
             {
                 id       : 'statistics',

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import {addTextarea} from './function/addfield';
 import {removeTextArea} from './function/removefield';
 import {JoinField} from './function/mergefield'
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector     : 'effectform',
@@ -24,10 +25,13 @@ export class effectformComponent implements OnInit, OnDestroy
     account=new Account();
     postResponse:post_response;
     postdata=new post_info();
-    urlList:any = [];
+    urlList:any[]= [];
     public urls:any[]=[];
-    contentList:any = [];
+    contentList:any[]= [];
     public contents:any[]=[];
+    public position ={X:'Right',Y:'Top'};
+    URLcontrolerCount:number=0;
+    ContentscontrolerCount:number=0;
     classURL;
     classContent;
     refreshSpinner = false;
@@ -35,7 +39,7 @@ export class effectformComponent implements OnInit, OnDestroy
     toastColor;
     disableURLbutton;
     // Public
-    public position = { X: 'Right' };
+
     public message: string;
 
     // Private
@@ -50,7 +54,7 @@ export class effectformComponent implements OnInit, OnDestroy
         private _formBuilder: FormBuilder,
         private _FbAccountsInfosService: FbAccountsInfosService,
         private postDataService: PostDataService,
-        private router: Router,
+        private router:Router
     )
     {
         // Set the private defaults
@@ -85,13 +89,17 @@ export class effectformComponent implements OnInit, OnDestroy
             contents      : [ {
                 value   : null,
                 disabled:true
-            },Validators.required
+            }, 
         ] 
         });
         this.element.hide('All');
-        this.element.target = '#toast_pos_target';
+       this.element.target = '#toast_pos_target';
+      // this.element.position.X='100px';
+      // this.element.position.Y='10 px';
+       // this.element.cssClass='e-fixed';
         this.element.animation.show.effect = 'ZoomIn';
         this.element.animation.hide.effect = 'ZoomOut';
+        
     } 
 
 
@@ -110,7 +118,7 @@ export class effectformComponent implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
     // tslint:disable-next-line:typedef
     getInfo()
-    {
+    {  // 
         this._FbAccountsInfosService.getAccount()
             .subscribe(data => { this.account = 
                 {
@@ -120,16 +128,17 @@ export class effectformComponent implements OnInit, OnDestroy
                     fb_url_types: (data as any ).fb_url_types,    
                 }; 
             },
-           // err => { console.error(err); this.router.navigate(['/maintenance']) ;}
+            err => { console.error(err); this.router.navigate(['/maintenance']) ;}
                 );
       }
 
     // tslint:disable-next-line:typedef
     SendInfo()
-    { 
+    {  this.fixedtoast()
         if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' )
         {
             this.form.controls.contents.enable(); 
+            this.postdata.contents=this.contents;
         }
         else
         {
@@ -151,7 +160,7 @@ export class effectformComponent implements OnInit, OnDestroy
                 this.message=this.postResponse.message;
                 this.toastShow();
             },
-           // err => { console.error(err); this.router.navigate(['/maintenance']) ; }
+           err => { console.error(err); this.router.navigate(['/maintenance']) ; }
         );  
     }
 
@@ -170,6 +179,7 @@ export class effectformComponent implements OnInit, OnDestroy
            else{this.toastColor="info";}
         }
 
+
     setTimeout(
       () => {
           
@@ -180,54 +190,59 @@ export class effectformComponent implements OnInit, OnDestroy
           this.ApplySpinner=false;
       }, 600);
     }
-
+    fixedtoast(){
+        if(this.urlList.length>=2 || this.contentList.length>=2){this.element.target= document.body}
+        else{this.element.target = '#toast_pos_target';}
+    }
+    contentADDdisable():boolean{if(this.form.get('contents').value == null){return true} else{return false}}
     enableContent():void{ 
         this.form.controls.contents.enable();
+    }
+    diableContent():void{ 
+        this.form.controls.contents.disable();
     }
 
 
     refreshWidget(){
+    
         this.getInfo();
+        this.element.target = '#toast_pos_target';
         this.message="Refresh Widget Value";
         this.toastShow();
         
     }
 
       // 
-
+public max;
     addURLTextarea(){ 
-        [this.urlList,this.form]=addTextarea(this.urlList,this.form,this._formBuilder,"URL"); 
+        [this.urlList,this.form,this.URLcontrolerCount]=addTextarea(this.urlList,this.form,this._formBuilder,"URL",this.URLcontrolerCount); 
       this.classURL='Groub';
-     // console.log(this.urlList)
-     // console.log(this.form)   
+       
     }
 
     removeURLTextArea(index){
-    [this.urlList,this.form,this.classURL]=removeTextArea(this.form,this.urlList,this.classURL,index,this.urls);
-   // console.log(this.urlList)
-   // console.log(this.form)
+    [this.urlList,this.form,this.classURL]=removeTextArea(this.form,this.urlList,this.classURL,index,this.urls,"URL");
+    
     }
 
     JoinUrls(){
-        [this.form,this.postdata.urls]=JoinField(this.urls,this.form,this.urlList,this.postdata.urls,this.form.value.urls);
-        //console.log(this.postdata)
+        [this.form,this.urls]=JoinField(this.urls,this.form,this.urlList,this.form.value.urls);
+        this.postdata.urls=this.urls
     }
 
     addContentTextarea(){ 
-        [this.contentList,this.form]=addTextarea(this.contentList,this.form,this._formBuilder,"Content"); 
-      this.classURL='Groub';
-     // console.log(this.urlList);
-     // console.log(this.form);     
+        [this.contentList,this.form,this.ContentscontrolerCount]=addTextarea(this.contentList,this.form,this._formBuilder,"Content",this.ContentscontrolerCount); 
+      this.classContent='Groub';
+     
     } 
 
     removeContentTextArea(index){
-        [this.contentList,this.form,this.classContent]=removeTextArea(this.form,this.contentList,this.classContent,index,this.contents);
-      //  console.log(this.urlList)
-      //  console.log(this.form)
+        [this.contentList,this.form,this.classContent]=removeTextArea(this.form,this.contentList,this.classContent,index,this.contents,"Content");
+       
     }
 
     JoinContents(){
-        [this.form,this.postdata.contents]=JoinField(this.contents,this.form,this.contentList,this.postdata.contents,this.form.value.contents);
-        //console.log(this.postdata)
+        [this.form,this.contents]=JoinField(this.contents,this.form,this.contentList,this.form.value.contents);
+        this.SendInfo()
      }
 }

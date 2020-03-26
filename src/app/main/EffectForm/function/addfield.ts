@@ -1,25 +1,24 @@
-
  
-export function addTextarea(List,form,_formBuilder,nameofField){  
-     form.controls.urls.invalid
+export function addTextarea(List,form,_formBuilder,nameofField,controlerCount){  
+
         if(List.length==0)
-        {
-      form.addControl((nameofField+ (List.length+1)), _formBuilder.control(null))
-        List.push(nameofField+ (List.length+1));
+        {List.push(nameofField+ (controlerCount+1));
+      form.addControl((nameofField+ (controlerCount+1)), _formBuilder.control(null))
+        controlerCount=controlerCount+1
         }
         else{
         if(isValidform(List,form)){
-        form.addControl((nameofField+ (List.length+1)), _formBuilder.control(null))
-        List.push(nameofField+ (List.length+1));
+          List.push(nameofField+ (controlerCount+1));
+        form.addControl((nameofField+ (controlerCount+1)), _formBuilder.control(null))  
+        controlerCount=controlerCount+1
         }}
-
-        return[ List,form]
+        return[ List,form,controlerCount]
        
     }
    function isValidform(List,form){
         var valid:boolean[]=[];
         for (let index = 0; index < List.length; index++) {
-             valid[index]=form.get(List[index]).valid
+             if (form.get(List[index]).value != null){valid[index]=true} else {valid[index]=false}
         }
         return valid.every(Boolean)
 
