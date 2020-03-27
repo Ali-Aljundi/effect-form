@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import {addTextarea} from './function/addfield';
 import {removeTextArea} from './function/removefield';
 import {JoinField} from './function/mergefield'
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {DynamicFormComponent} from './function/dynamic-form/dynamic-form.component'
 
 @Component({
     selector     : 'effectform',
@@ -54,7 +54,8 @@ export class effectformComponent implements OnInit, OnDestroy
         private _formBuilder: FormBuilder,
         private _FbAccountsInfosService: FbAccountsInfosService,
         private postDataService: PostDataService,
-        private router:Router
+        private router:Router,
+        private DynamicFormComponent:DynamicFormComponent
     )
     {
         // Set the private defaults
@@ -82,8 +83,8 @@ export class effectformComponent implements OnInit, OnDestroy
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-             urls: [null, [Validators.required]],
-             //,Validators.pattern('https?://.+')
+             urls: [null, [Validators.required,Validators.pattern('https?://.+')]],
+             //
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
             contents      : [ {
@@ -94,9 +95,6 @@ export class effectformComponent implements OnInit, OnDestroy
         });
         this.element.hide('All');
        this.element.target = '#toast_pos_target';
-      // this.element.position.X='100px';
-      // this.element.position.Y='10 px';
-       // this.element.cssClass='e-fixed';
         this.element.animation.show.effect = 'ZoomIn';
         this.element.animation.hide.effect = 'ZoomOut';
         
@@ -146,11 +144,10 @@ export class effectformComponent implements OnInit, OnDestroy
         }
 
        this.postdata.url_type=this.form.value.url_type;
-       //this.postdata.contents=this.form.value.contents;
+
        this.postdata.count=this.form.value.count;
        this.postdata.effectType=this.form.value.effectType;
        this.postdata.registeredAccountType=this.form.value.registerdAccountType;
-       // this.postdata=this.form.value;
         console.log(this.postdata);
         this.postDataService.postdata(this.postdata)
         .subscribe(
@@ -213,7 +210,7 @@ export class effectformComponent implements OnInit, OnDestroy
     }
 
       // 
-public max;
+
     addURLTextarea(){ 
         [this.urlList,this.form,this.URLcontrolerCount]=addTextarea(this.urlList,this.form,this._formBuilder,"URL",this.URLcontrolerCount); 
       this.classURL='Groub';

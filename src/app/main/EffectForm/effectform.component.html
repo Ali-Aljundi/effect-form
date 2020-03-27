@@ -92,7 +92,7 @@
                                 <mat-error>Effect Type is required!</mat-error>
                             </mat-form-field>
                             
-                            <div class="{{classURL}}" fxLayout="column" >
+                            <!--<div class="{{classURL}}" fxLayout="column" >
                         
                             <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
                                 <mat-form-field class="firstONE"   appearance="outline" fxFlex="100" >
@@ -110,7 +110,8 @@
                                 </mat-form-field>
                             </div>
 
-                            </div>
+                            </div>-->
+                            <app-dynamic-form [form]='form' [nameOFfield]='urls'></app-dynamic-form>
                            
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                                 <mat-form-field class="mb-8" appearance="outline" fxFlex="100" >
