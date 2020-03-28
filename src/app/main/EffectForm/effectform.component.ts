@@ -7,10 +7,7 @@ import { PostDataService } from 'Services/post-data.service';
 import {post_info} from 'Model/post_info';
 import {post_response} from 'Model/post_response';
 import { Router } from '@angular/router';
-import {addTextarea} from './function/addfield';
-import {removeTextArea} from './function/removefield';
-import {JoinField} from './function/mergefield'
-import {DynamicFormComponent} from './function/dynamic-form/dynamic-form.component'
+
 
 @Component({
     selector     : 'effectform',
@@ -25,19 +22,14 @@ export class effectformComponent implements OnInit, OnDestroy
     account=new Account();
     postResponse:post_response;
     postdata=new post_info();
-    urlList:any[]= [];
-    public urls:any[]=[];
-    contentList:any[]= [];
+
+    public urls:string[];
     public contents:any[]=[];
     public position ={X:'Right',Y:'Top'};
-    URLcontrolerCount:number=0;
-    ContentscontrolerCount:number=0;
-    classURL;
-    classContent;
+
     refreshSpinner = false;
     ApplySpinner = false;
     toastColor;
-    disableURLbutton;
     // Public
 
     public message: string;
@@ -55,7 +47,6 @@ export class effectformComponent implements OnInit, OnDestroy
         private _FbAccountsInfosService: FbAccountsInfosService,
         private postDataService: PostDataService,
         private router:Router,
-        private DynamicFormComponent:DynamicFormComponent
     )
     {
         // Set the private defaults
@@ -83,14 +74,14 @@ export class effectformComponent implements OnInit, OnDestroy
                 }, [Validators.required,
                    Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]
             ],
-             urls: [null, [Validators.required,Validators.pattern('https?://.+')]],
+             URL: [null, [Validators.required,Validators.pattern('')]],
              //
              effectType   : ['', Validators.required],
              url_type  : ['', Validators.required],
-            contents      : [ {
+            Content      : [ {
                 value   : null,
                 disabled:true
-            }, 
+            }, Validators.required
         ] 
         });
         this.element.hide('All');
@@ -134,17 +125,12 @@ export class effectformComponent implements OnInit, OnDestroy
     SendInfo()
     {  this.fixedtoast()
         if (this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share' )
-        {
-            this.form.controls.contents.enable(); 
+        { 
             this.postdata.contents=this.contents;
         }
-        else
-        {
-             this.form.controls.contents.disable(); 
-        }
-
+       
        this.postdata.url_type=this.form.value.url_type;
-
+        this.postdata.urls=this.urls;
        this.postdata.count=this.form.value.count;
        this.postdata.effectType=this.form.value.effectType;
        this.postdata.registeredAccountType=this.form.value.registerdAccountType;
@@ -187,16 +173,16 @@ export class effectformComponent implements OnInit, OnDestroy
           this.ApplySpinner=false;
       }, 600);
     }
+
     fixedtoast(){
-        if(this.urlList.length>=2 || this.contentList.length>=2){this.element.target= document.body}
+        if(this.urls.length>=3 || this.contents.length>=2){this.element.target= document.body}
         else{this.element.target = '#toast_pos_target';}
     }
-    contentADDdisable():boolean{if(this.form.get('contents').value == null){return true} else{return false}}
+   
     enableContent():void{ 
-        this.form.controls.contents.enable();
-    }
-    diableContent():void{ 
-        this.form.controls.contents.disable();
+        if(this.form.value.effectType == 'comment'|| this.form.value.effectType == 'share')
+        {this.form.controls.Content.enable();}
+        else{ this.form.controls.Content.disable();}
     }
 
 
@@ -208,38 +194,12 @@ export class effectformComponent implements OnInit, OnDestroy
         this.toastShow();
         
     }
+    getURLvalue(value){
+     this.urls=value
+    }
+    getContentvalue(value){
+        this.contents=value
+    }
 
       // 
-
-    addURLTextarea(){ 
-        [this.urlList,this.form,this.URLcontrolerCount]=addTextarea(this.urlList,this.form,this._formBuilder,"URL",this.URLcontrolerCount); 
-      this.classURL='Groub';
-       
-    }
-
-    removeURLTextArea(index){
-    [this.urlList,this.form,this.classURL]=removeTextArea(this.form,this.urlList,this.classURL,index,this.urls,"URL");
-    
-    }
-
-    JoinUrls(){
-        [this.form,this.urls]=JoinField(this.urls,this.form,this.urlList,this.form.value.urls);
-        this.postdata.urls=this.urls
-    }
-
-    addContentTextarea(){ 
-        [this.contentList,this.form,this.ContentscontrolerCount]=addTextarea(this.contentList,this.form,this._formBuilder,"Content",this.ContentscontrolerCount); 
-      this.classContent='Groub';
-     
-    } 
-
-    removeContentTextArea(index){
-        [this.contentList,this.form,this.classContent]=removeTextArea(this.form,this.contentList,this.classContent,index,this.contents,"Content");
-       
-    }
-
-    JoinContents(){
-        [this.form,this.contents]=JoinField(this.contents,this.form,this.contentList,this.form.value.contents);
-        this.SendInfo()
-     }
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit, Input,Output } from '@angular/core';
-import {addTextarea} from '../../function/addfield';
-import {removeTextArea} from '../../function/removefield';
-import {JoinField} from '../../function/mergefield'
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import {addTextarea} from '../../component/addfield';
+import {removeTextArea} from '../../component/removefield';
+import {JoinField} from '../../component/mergefield'
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-dynamic-form',
@@ -11,19 +12,21 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class DynamicFormComponent implements OnInit {
 @Input() form:FormGroup;
-@Input() nameOFfield
+@Input() nameOFfield:string;
 
-
-
+@Output() finlevalue = new EventEmitter();
 
   constructor( private _formBuilder: FormBuilder,) { }
 
   List:any[]= [];
   public valueList:any[]=[];
  controlerCount:number=0;
+ finleList;
   class;
   
-  ngOnInit() {}
+  ngOnInit() {
+  
+  }
 
  ADDdisable():boolean{if(this.form.get(this.nameOFfield).value == null){return true} else{return false}}
 
@@ -38,9 +41,11 @@ removeTextArea(index){
 
 }
 
-JoinUrls(){
-    [this.form,this.valueList]=JoinField(this.valueList,this.form,this.List,this.form.value.urls);
-    return this.valueList
+Join(){
+ var firstvalue =this.form.get(this.nameOFfield).value;
+    [this.form,this.finleList]=JoinField(this.valueList,this.form,this.List,firstvalue);
+    this.finlevalue.emit(this.finleList)
+    
 }
 
 }

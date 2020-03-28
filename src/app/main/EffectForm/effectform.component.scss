@@ -63,14 +63,7 @@
 
 
 
-.icons{
-    width: 15%  !important;
-}
-.fuse-widget-front{
-    max-height: 200px !important;
-    overflow: hidden;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-}
+
 .first{
     max-height: 500px !important;
    margin-left: 20% !important;
@@ -86,25 +79,7 @@
     margin-right: auto !important;
     background-color:#039be5;
 }
-@keyframes spinner1 {
-    to {transform: rotate(360deg);}
-}
-   
-  .spinner1:before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 14px;
-    height: 14px;
-    margin-top: -8px;
-    margin-left: -40px;
-    border-radius: 50%;
-    border: 2px solid #ffffff;
-    border-top-color: #000000;
-    animation: spinner1 .8s linear infinite;
-  }
+
 
   @keyframes spinner2 {
     to {transform: rotate(360deg);}
@@ -129,37 +104,14 @@
   .ref{
       width: 120px !important;
   }
-  .addText{
-    margin-left: 5px ;
-    
-    color:green ;
-    cursor: pointer;
-
-  }
-  .urls{
-    display: block !important
-  }
-
-  .deleteText{
-     // margin-left: 20px !important;
-        color: red;
-        cursor: pointer;
-    }
+ 
 
   ::ng-deep .mat-form-field-flex
     {
         padding-right: 10px !important;
     }
-.Groub{
-    border-style: dotted;
 
-    border-color: rgba(0, 0, 0, 0.30);
-    border-radius: 10px;
-    margin-bottom: 10px;
-    }
-.firstONE{
-  padding-top: 10px !important;
-}
+
 .buttontrans{
   background-color: transparent;
  border-style: none !important;

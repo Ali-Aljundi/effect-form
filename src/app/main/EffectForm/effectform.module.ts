@@ -17,7 +17,8 @@ import { effectformComponent } from 'app/main/EffectForm/effectform.component';
 import { AngularResizedEventModule } from 'angular-resize-event';
 
 import { ToastModule } from '@syncfusion/ej2-angular-notifications';
-import { DynamicFormComponent } from './function/dynamic-form/dynamic-form.component';
+import { DynamicFormComponent } from './component/dynamic-form/dynamic-form.component';
+import { SmallWidgetComponent } from './component/small-widget/small-widget.component';
 //import {SpinnerButtonComponent} from '../../Component/spinner-button/spinner-button.component'
 const routes: Routes = [
     {
@@ -30,6 +31,7 @@ const routes: Routes = [
     declarations: [
         effectformComponent,
         DynamicFormComponent,
+        SmallWidgetComponent,
         //SpinnerButtonComponent
     ],
     imports     : [
@@ -54,6 +56,7 @@ const routes: Routes = [
 
         FuseSharedModule,
     ],
+    providers:[DynamicFormComponent]
 })
 export class EffectFormModule
 {

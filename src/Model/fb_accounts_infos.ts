@@ -25,7 +25,7 @@ export class Account{
     // tslint:disable-next-line:variable-name
     fb_account_types: any[] =['0'];
     // tslint:disable-next-line:variable-name
-    fb_effect_types: any[] =['0'];
+    fb_effect_types: any[] =['comment','like'];
     // tslint:disable-next-line:variable-name
     fb_url_types: any[] = ['0'];
     }

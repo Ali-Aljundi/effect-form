@@ -4,49 +4,11 @@
             <div fxLayout="column">
                 <div class="ref-button">
                    <button class="ref" mat-raised-button color="accent" [class.spinner2]="refreshSpinner" [disabled]="refreshSpinner" (click)="refreshSpinner = true" (click)="refreshWidget()" >Refresh</button>
-                    <!--<app-spinner-button  [color]='color' [turn]='turn' [text]='text' [size]='size' (click)='refreshWidget()'> </app-spinner-button>-->
+                 
                 </div>
-                <fuse-widget  fxFlex="100">
-                    <div class="fuse-widget-front h-auto" >
-                            <div class="pl-8 pr-8 py-16 h-54 font-size-20 red-fg" fxLayout="row" fxLayoutAlign="center">
-                               <img class="icons" src="assets/icons/email.png"/>
-                                <div class="pl-12">Active Accounts</div>
-                            </div>
-
-                            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-                                <div class="red-fg font-size-60 line-height-44">
-                                    {{account.fb_accounts_info[1].active_count}}
-                                </div>
-                            </div>
-                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="center center">
-                            <span class="h4 secondary-text text-truncate">
-                                All Acount:
-                            </span>
-                            <span class="red-fg  h2 ml-8">{{account.fb_accounts_info[1].total_count}}</span>
-                        </div>
-                    </div>
-                </fuse-widget>
-
-                <fuse-widget   fxFlex="100">
-                    <div class="fuse-widget-front h-auto" >
-                            <div class="pl-8 pr-8 py-16 h-50-p font-size-20 green-fg" fxLayout="row" fxLayoutAlign="center">
-                                <img class="icons"  src="assets/icons/android.png"/>
-                                <div class="pl-12">Active Accounts</div>
-                            </div>
-                            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-                                <div class="green-fg font-size-60 line-height-44 ">
-                                {{account.fb_accounts_info[0].active_count}}
-                                </div>
-                            </div>
-                            <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="center center">
-                                <span class="h4 secondary-text text-truncate">
-                                    All Acount:
-                                </span>
-                                <span class=" green-fg h2 ml-8">{{account.fb_accounts_info[0].total_count}}</span>
-                            </div>
-                        </div>
-                </fuse-widget>
-
+                <app-small-widget color='red' type='email' [active_count]='account.fb_accounts_info[1].active_count' [total_count]='account.fb_accounts_info[1].total_count' ></app-small-widget>
+                <app-small-widget color='green' type='mobile' [active_count]='account.fb_accounts_info[0].active_count' [total_count]='account.fb_accounts_info[0].total_count' ></app-small-widget>
+            
             </div>
         </div>
         
@@ -92,26 +54,7 @@
                                 <mat-error>Effect Type is required!</mat-error>
                             </mat-form-field>
                             
-                            <!--<div class="{{classURL}}" fxLayout="column" >
-                        
-                            <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
-                                <mat-form-field class="firstONE"   appearance="outline" fxFlex="100" >
-                                    <mat-label class="h2">URL</mat-label>
-                                    <button [disabled]='form.controls.urls.invalid'  matSuffix class="buttontrans" (click)="addURLTextarea(url_index)" ><mat-icon matSuffix class="addText">add_circle</mat-icon></button>   
-                                    <textarea  matInput formControlName="urls" class="urls" ></textarea>                                                              
-                                </mat-form-field>                                
-                            </div>
-                            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngFor="let url of urlList; let url_index= index" >
-                                <mat-form-field   appearance="outline" fxFlex="100" >
-                                    <mat-label  class="h2">URL-{{url_index+1}}</mat-label>
-                                    <textarea matInput formControlName="{{url}}" class="urls"  required name="{{url}}"></textarea>
-                                  
-                                    <mat-icon matSuffix class="deleteText" (click)="removeURLTextArea(url_index)">delete</mat-icon>
-                                </mat-form-field>
-                            </div>
-
-                            </div>-->
-                            <app-dynamic-form [form]='form' [nameOFfield]='urls'></app-dynamic-form>
+                            <app-dynamic-form  [form]='form' nameOFfield='URL' (finlevalue)='getURLvalue($event)'></app-dynamic-form>
                            
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                                 <mat-form-field class="mb-8" appearance="outline" fxFlex="100" >
@@ -126,29 +69,14 @@
                                 </mat-form-field>
                             </div>
 
-
-                            <div class="{{classContent}}" fxLayout="column" *ngIf="form.value.effectType == 'comment' || form.value.effectType == 'share'">
-                            <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngIf="form.value.effectType == 'comment' || form.value.effectType == 'share'">
-                                {{enableContent()}}
-                                <mat-form-field  class="firstONE"  appearance="outline" fxFlex="100"  >
-                                    <mat-label class="h2">Content</mat-label>
-                                    <textarea  matInput  formControlName="contents" class="urls"></textarea>
-                                    <button  [disabled]='contentADDdisable()' matSuffix class="buttontrans"  (click)="addContentTextarea()" ><mat-icon matSuffix class="addText" >add_circle</mat-icon></button>  
-                                    <mat-error>Content is required!</mat-error>
-                                </mat-form-field>
+                            <div *ngIf="form.value.effectType == 'comment' || form.value.effectType == 'share'">
+                                
+                                <app-dynamic-form  [form]='form' nameOFfield='Content' (finlevalue)='getContentvalue($event)'></app-dynamic-form>
                             </div>
+                             
+                            {{enableContent()}}
 
-                            <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto"  *ngFor="let content of contentList; let content_index= index" >
-                                <mat-form-field class="urlsMargin" appearance="outline" fxFlex="100" >
-                                    <mat-label  class="h2">Content-{{content_index+1}}</mat-label>
-                                    <textarea matInput formControlName="{{content}}" class="urls"   name="{{content}}"></textarea>
-                                   
-                                    <mat-icon matSuffix class="deleteText" (click)="removeContentTextArea(content_index)">delete</mat-icon>
-                                </mat-form-field>
-                            </div>
-                        </div>
-
-                            <button class="mt-20" [disabled]='form.invalid'  mat-raised-button color="accent"  [class.spinner2]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true" (click)="JoinUrls()" (click)=" JoinContents()"  >Apply Effect</button>
+                            <button  class="mt-20" [disabled]='form.invalid'  mat-raised-button color="accent"  [class.spinner2]="ApplySpinner" [disabled]="ApplySpinner" (click)="ApplySpinner=true"  (click)=" SendInfo()"  >Apply Effect</button>
                             
                             <ejs-toast #element  [position] = 'position' cssClass="e-toast-{{toastColor}} e-fixed" >
                                 <ng-template #title>

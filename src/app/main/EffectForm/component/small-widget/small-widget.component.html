@@ -1,0 +1,20 @@
+<fuse-widget  fxFlex="100">
+    <div class="fuse-widget-front h-auto" >
+            <div class="pl-8 pr-8 py-16 h-54 font-size-20 {{color}}-fg" fxLayout="row" fxLayoutAlign="center">
+               <img class="icons" src="assets/icons/{{type}}.png"/>
+                <div class="pl-12">Active Accounts</div>
+            </div>
+
+            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                <div class="{{color}}-fg font-size-60 line-height-44">
+                    {{active_count}}
+                </div>
+            </div>
+        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="center center">
+            <span class="h4 secondary-text text-truncate">
+                All Acount:
+            </span>
+            <span class="{{color}}-fg  h2 ml-8">{{total_count}}</span>
+        </div>
+    </div>
+</fuse-widget>

@@ -1,0 +1,23 @@
+<form [formGroup]="form"  >
+<div class="{{class}}" fxLayout="column" >
+
+<div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" >
+    <mat-form-field  class="firstONE"  appearance="outline" fxFlex="100"  >
+        <mat-label  class="h2">{{nameOFfield}}</mat-label>
+        <textarea  matInput   formControlName="{{nameOFfield}}" class="urls"></textarea>
+        <button  [disabled]='ADDdisable()' matSuffix class="buttontrans"  (click)="addTextarea()"  ><mat-icon matSuffix class="addText" >add_circle</mat-icon></button>  
+        <mat-error>{{nameOFfield}} is required!</mat-error>
+    </mat-form-field>
+</div>
+
+<div     fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto"  *ngFor="let cont of List; let cont_index= index" >
+    <mat-form-field  appearance="outline" fxFlex="100" >
+        <mat-label class="h2">{{nameOFfield}}-{{cont_index+1}}</mat-label>
+        <textarea matInput  formControlName="{{cont}}" class="urls"   name="{{cont}}"></textarea>
+       
+        <mat-icon matSuffix class="deleteText" (click)="removeTextArea(cont_index)" >delete</mat-icon>
+    </mat-form-field>
+</div>
+{{Join()}}
+</div>
+</form>
